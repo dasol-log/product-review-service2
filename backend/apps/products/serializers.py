@@ -4,7 +4,7 @@ from .models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
     """
-    제품 CRUD Serializer
+    상품 Serializer
     """
 
     class Meta:
@@ -15,5 +15,9 @@ class ProductSerializer(serializers.ModelSerializer):
             "description",
             "price",
             "image",
+            "created_at",
+        ]
+        read_only_fields = [
+            "id",
             "created_at",
         ]
