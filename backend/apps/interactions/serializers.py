@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import (
     ReviewLike,
     ReviewBookmark,
@@ -7,38 +8,32 @@ from .models import (
 )
 
 
-# 좋아요 Serializer
 class ReviewLikeSerializer(serializers.ModelSerializer):
     """
     리뷰 좋아요 Serializer
-
-    역할:
-    1. 입력 검증
-        - user, review 값이 정상인지 검증
-        - 중복 좋아요는 모델(unique_together)에서 제한
-
-    2. 출력 변환
-        - 좋아요 데이터를 JSON으로 변환
     """
 
     class Meta:
         model = ReviewLike
         fields = [
             "id",
-            "user",       # FK (입력 검증 대상)
-            "review",     # FK (입력 검증 대상)
+            "user",
+            "review",
+            "created_at",
+        ]
+
+        # [10번에서 변경] user를 request.user로 처리하는 구조에 맞게
+        # id, user, created_at을 읽기 전용으로 추가
+        read_only_fields = [
+            "id",
+            "user",
             "created_at",
         ]
 
 
-# 북마크 Serializer
 class ReviewBookmarkSerializer(serializers.ModelSerializer):
     """
     리뷰 북마크 Serializer
-
-    역할:
-    - user와 review 관계 데이터 검증
-    - 북마크 데이터 JSON 변환
     """
 
     class Meta:
@@ -50,52 +45,87 @@ class ReviewBookmarkSerializer(serializers.ModelSerializer):
             "created_at",
         ]
 
+        # [10번에서 변경] 북마크도 user를 직접 받지 않고
+        # View에서 자동 처리할 수 있도록 읽기 전용 필드 추가
+        read_only_fields = [
+            "id",
+            "user",
+            "created_at",
+        ]
 
-# 댓글 Serializer
+
 class ReviewCommentSerializer(serializers.ModelSerializer):
     """
     리뷰 댓글 Serializer
-
-    역할:
-    1. 입력 검증
-        - user, review, content 검증
-        - 댓글 내용(content) 필수값
-
-    2. 출력 변환
-        - 댓글 데이터를 JSON으로 반환
     """
+
+    # [10번에서 변경] 댓글 작성자의 username 표시용 필드 추가
+    # source="user.username" 으로 User 모델의 username을 응답에 포함
+    username = serializers.CharField(
+        source="user.username",
+        read_only=True
+    )
 
     class Meta:
         model = ReviewComment
         fields = [
             "id",
             "user",
+
+            # [10번에서 변경] 작성자 username 응답 필드 추가
+            "username",
+
             "review",
-            "content",   # 입력 데이터 (검증 대상)
+            "content",
             "created_at",
+
+            # [10번에서 변경] models.py에 추가된 updated_at 반영
+            "updated_at",
+        ]
+
+        # [10번에서 변경] 댓글은 user, review를 View/URL에서 처리하는 구조라
+        # 클라이언트 수정 불가 필드들을 읽기 전용으로 추가
+        read_only_fields = [
+            "id",
+            "user",
+            "username",
+            "review",
+            "created_at",
+            "updated_at",
         ]
 
 
-# 신고 Serializer
 class ReviewReportSerializer(serializers.ModelSerializer):
     """
     리뷰 신고 Serializer
-
-    역할:
-    1. 입력 검증
-        - user, review, reason 검증
-        - 신고 사유(reason) 필수값
-
-    2. 출력 변환
-        - 신고 데이터를 JSON으로 반환
     """
+
+    # [10번에서 변경] 신고자 username 표시용 필드 추가
+    username = serializers.CharField(
+        source="user.username",
+        read_only=True
+    )
 
     class Meta:
         model = ReviewReport
         fields = [
             "id",
             "user",
+
+            # [10번에서 변경] 신고자 username 응답 필드 추가
+            "username",
+
             "review",
-            "reason",   # 입력 데이터 (검증 대상)
+            "reason",
+            "created_at",
+        ]
+
+        # [10번에서 변경] 신고도 user, review를 View에서 자동 처리하므로
+        # 읽기 전용 필드 추가
+        read_only_fields = [
+            "id",
+            "user",
+            "username",
+            "review",
             "created_at",
         ]

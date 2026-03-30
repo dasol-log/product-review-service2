@@ -28,7 +28,16 @@ class ReviewViewSet(viewsets.ModelViewSet):
     - DELETE /api/reviews/<id>/           : 리뷰 삭제
     """
 
+    # =========================================================
+    # [인터랙티브 관련]
+    # ReviewSerializer 안에
+    # likes_count, bookmarks_count, is_liked, is_bookmarked
+    # 가 추가되어 있다면,
+    # 이 ViewSet의 목록/상세 응답에도 그 값들이 함께 내려가게 됩니다.
+    # 즉, View 코드 자체보다 serializer 확장의 영향이 반영되는 부분입니다.
+    # =========================================================
     serializer_class = ReviewSerializer
+
     parser_classes = [MultiPartParser, FormParser]
 
     def get_permissions(self):
@@ -82,6 +91,13 @@ class ReviewViewSet(viewsets.ModelViewSet):
         )
 
 
+# =============================================================
+# [인터랙티브 관련]
+# 사용자 본인이 작성한 리뷰만 따로 조회하는 기능
+# 좋아요/북마크와 직접 토글하는 API는 아니지만,
+# 인터랙션이 붙은 리뷰 데이터를 "내 리뷰" 기준으로 확인하는 흐름에서
+# 함께 사용될 수 있는 확장 기능입니다.
+# =============================================================
 class MyReviewListAPIView(generics.ListAPIView):
     """
     내 리뷰 목록
