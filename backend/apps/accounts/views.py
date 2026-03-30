@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status  # [추가] status 추가
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
@@ -22,7 +22,8 @@ class UserViewSet(ViewSet):
     permission_classes = [permissions.AllowAny]
 
     def list(self, request):
-        users = User.objects.all()
+        # [수정] 최신 사용자부터 보이도록 정렬 추가
+        users = User.objects.all().order_by("-id")
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
@@ -49,6 +50,22 @@ class SignupAPIView(generics.CreateAPIView):
 
     serializer_class = SignupSerializer
     permission_classes = [permissions.AllowAny]
+
+    # [추가] 회원가입 성공 시 비밀번호가 아닌 안전한 사용자 정보만 응답하도록 오버라이드
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+
+        return Response(
+            {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+                "created_at": user.created_at,
+            },
+            status=status.HTTP_201_CREATED,
+        )
 
 
 class MeAPIView(generics.RetrieveAPIView):
