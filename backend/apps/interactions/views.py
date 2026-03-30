@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ViewSet
 
-# Create your views here.
+
+class ReviewLikeViewSet(ViewSet):
+    pass
+
+
+class ReviewBookmarkViewSet(ViewSet):
+    pass
+
+
+class ReviewCommentViewSet(ViewSet):
+    pass
+
+
+class ReviewReportViewSet(ViewSet):
+    pass
