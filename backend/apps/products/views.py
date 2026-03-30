@@ -22,6 +22,8 @@ from .models import Product
 # Product 데이터를 JSON으로 변환하는 Serializer
 from .serializers import ProductSerializer
 
+from .paginations import ProductPageNumberPagination # 추가
+
 
 class ProductPagination(PageNumberPagination):
     """
@@ -167,3 +169,22 @@ class ProductViewSet(ViewSet):
 
         # 3️⃣ 삭제 성공 응답
         return Response({"message": "deleted"}, status=status.HTTP_204_NO_CONTENT)
+    
+    
+class ProductViewSet(ViewSet):
+    """
+    상품 목록 페이지네이션
+    """
+
+    def list(self, request):
+        queryset = Product.objects.all().order_by("-id")
+
+        paginator = ProductPageNumberPagination() # 추가
+        page = paginator.paginate_queryset(queryset, request) # 추가
+
+        serializer = ProductSerializer(
+            page,
+            many=True,
+            context={"request": request}
+        )
+        return paginator.get_paginated_response(serializer.data)
