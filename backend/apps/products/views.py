@@ -18,6 +18,7 @@ class ProductViewSet(ViewSet):
     - 상세
     - 생성
     - 수정
+    - 부분 수정
     - 삭제
     """
 
@@ -34,14 +35,17 @@ class ProductViewSet(ViewSet):
             many=True,
             context={"request": request}
         )
+
         return paginator.get_paginated_response(serializer.data)
 
     def retrieve(self, request, pk=None):
         product = get_object_or_404(Product, pk=pk)
+
         serializer = ProductSerializer(
             product,
             context={"request": request}
         )
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
@@ -62,6 +66,23 @@ class ProductViewSet(ViewSet):
         serializer = ProductSerializer(
             product,
             data=request.data,
+            partial=False,
+            context={"request": request}
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def partial_update(self, request, pk=None):
+        product = get_object_or_404(Product, pk=pk)
+
+        serializer = ProductSerializer(
+            product,
+            data=request.data,
             partial=True,
             context={"request": request}
         )
@@ -75,12 +96,9 @@ class ProductViewSet(ViewSet):
     def destroy(self, request, pk=None):
         product = get_object_or_404(Product, pk=pk)
         product.delete()
-        return Response(
-            {"message": "deleted"},
-            status=status.HTTP_204_NO_CONTENT
-        )
+        return Response({"message": "deleted"}, status=status.HTTP_204_NO_CONTENT)
 
-# 이후 화면설계
+
 class ProductListPageView(TemplateView):
     template_name = "products/product_list.html"
 
@@ -92,6 +110,11 @@ class ProductDetailPageView(TemplateView):
 class ProductCreatePageView(TemplateView):
     template_name = "products/product_create.html"
 
-    
+
 class ProductUpdatePageView(TemplateView):
-  template_name = "products/product_update.html"
+    template_name = "products/product_update.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["pk"] = self.kwargs.get("pk")
+        return context
