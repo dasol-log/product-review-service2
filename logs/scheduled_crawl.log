@@ -1,0 +1,2375 @@
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+[glowpick] https://glowpick.co.kr/ranking/search/%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 74
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 89
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 81
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 85
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 82
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 96
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 72
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 71
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 81
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 91
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 90
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 85
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 82
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 100
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 117
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 113
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 93
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 98
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 93
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+candidate title len = 93
+candidate url len = 37
+candidate unique_key len = 64
+page title len = 4
+성공 - title=글로우픽 / candidate_count=20 / created=0 / updated=21
+
+[hwahae] https://www.hwahae.co.kr/search?q=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC&type=goods
+candidate title len = 97
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 101
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 100
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 87
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 96
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 95
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 97
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 93
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 101
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 101
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 90
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 98
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 82
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 86
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 98
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 101
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 99
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 97
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 79
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+candidate title len = 72
+candidate url len = 36
+candidate unique_key len = 64
+page title len = 31
+성공 - title=수분크림 | 화해 - 900만개의 리뷰, 실제 사용 후기 / candidate_count=20 / created=0 / updated=21
+
+scheduled_crawl 종료
+총 3개 / 성공 2 / 실패 1 / created 0 / updated 42
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 921
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+[danawa] https://search.danawa.com/dsearch.php?query=수분크림
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+scheduled_crawl 종료
+총 2개 / 성공 0 / 실패 2 / created 0 / updated 0
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+[danawa] https://search.danawa.com/dsearch.php?query=수분크림
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+scheduled_crawl 종료
+총 2개 / 성공 0 / 실패 2 / created 0 / updated 0
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+[danawa] https://search.danawa.com/dsearch.php?query=수분크림
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+scheduled_crawl 종료
+총 2개 / 성공 0 / 실패 2 / created 0 / updated 0
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+[danawa] https://search.danawa.com/dsearch.php?query=수분크림
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+scheduled_crawl 종료
+총 2개 / 성공 0 / 실패 2 / created 0 / updated 0
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 1117
+candidate unique_key len = 64
+page title len = 15
+실패 - value too long for type character varying(1000)
+
+[danawa] https://search.danawa.com/dsearch.php?query=수분크림
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 948
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 948
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 18
+candidate url len = 153
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 24
+candidate url len = 161
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 9
+candidate url len = 43
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 23
+candidate url len = 161
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 8
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 8
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 9
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 9
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+성공 - title=수분크림 : 다나와 통합검색 / candidate_count=20 / created=8 / updated=13
+
+scheduled_crawl 종료
+총 2개 / 성공 1 / 실패 1 / created 8 / updated 13
+scheduled_crawl 시작
+
+[danawa] https://search.danawa.com/dsearch.php?query=%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC
+candidate title len = 20
+candidate url len = 113
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 945
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 7
+candidate url len = 721
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 951
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 6
+candidate url len = 921
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 948
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 924
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 18
+candidate url len = 153
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 24
+candidate url len = 161
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 9
+candidate url len = 43
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 23
+candidate url len = 161
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 8
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 8
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 9
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 9
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+candidate title len = 0
+candidate url len = 103
+candidate unique_key len = 64
+page title len = 15
+성공 - title=수분크림 : 다나와 통합검색 / candidate_count=20 / created=8 / updated=13
+
+scheduled_crawl 종료
+총 1개 / 성공 1 / 실패 0 / created 8 / updated 13
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_search_target
+  File "/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py", line 4, in <module>
+    from apps.crawling.services.save_service import save_search_result
+ImportError: cannot import name 'save_search_result' from 'apps.crawling.services.save_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/save_service.py). Did you mean: 'save_review_result'?
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/70006
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+[danawa] https://prod.danawa.com/info/?pcode=00000000
+성공 - review_count=0 / created=0 / updated=0
+
+[glowpick] https://www.glowpick.com/products/00000
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 0
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+  File "/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py", line 4, in <module>
+    from apps.crawling.services.save_service import save_review_result
+ImportError: cannot import name 'save_review_result' from 'apps.crawling.services.save_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/save_service.py). Did you mean: 'save_search_result'?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+  File "/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py", line 4, in <module>
+    from apps.crawling.services.save_service import save_review_result
+ImportError: cannot import name 'save_review_result' from 'apps.crawling.services.save_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/save_service.py). Did you mean: 'save_search_result'?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+  File "/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py", line 4, in <module>
+    from apps.crawling.services.save_service import save_review_result
+ImportError: cannot import name 'save_review_result' from 'apps.crawling.services.save_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/save_service.py). Did you mean: 'save_search_result'?
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+/home/dasol/product-review-service2/backend/.venv/bin/python: can't open file '/home/dasol/product-review-service2/backend/manage.py': [Errno 2] No such file or directory
+/home/dasol/product-review-service2/backend/.venv/bin/python: can't open file '/home/dasol/product-review-service2/backend/manage.py': [Errno 2] No such file or directory
+/home/dasol/product-review-service2/backend/.venv/bin/python: can't open file '/home/dasol/product-review-service2/backend/manage.py': [Errno 2] No such file or directory
+/home/dasol/product-review-service2/backend/.venv/bin/python: can't open file '/home/dasol/product-review-service2/backend/manage.py': [Errno 2] No such file or directory
+/home/dasol/product-review-service2/backend/.venv/bin/python: can't open file '/home/dasol/product-review-service2/backend/manage.py': [Errno 2] No such file or directory
+/home/dasol/product-review-service2/backend/.venv/bin/python: can't open file '/home/dasol/product-review-service2/backend/manage.py': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+Traceback (most recent call last):
+  File "/home/dasol/product-review-service2/backend/manage.py", line 22, in <module>
+    main()
+  File "/home/dasol/product-review-service2/backend/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 276, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dasol/product-review-service2/backend/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 48, in load_command_class
+    module = import_module("%s.management.commands.%s" % (app_name, name))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/dasol/product-review-service2/backend/apps/crawling/management/commands/scheduled_crawl.py", line 5, in <module>
+    from apps.crawling.services.crawl_service import crawl_product_review_target
+ImportError: cannot import name 'crawl_product_review_target' from 'apps.crawling.services.crawl_service' (/home/dasol/product-review-service2/backend/apps/crawling/services/crawl_service.py)
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/152936
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/183462
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/147861
+성공 - review_count=5 / created=5 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 15 / updated 0
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/185337
+glowpick 리뷰 수집 실패: HTTPSConnectionPool(host='glowpick.co.kr', port=443): Max retries exceeded with url: /product/185337 (Caused by NameResolutionError("HTTPSConnection(host='glowpick.co.kr', port=443): Failed to resolve 'glowpick.co.kr' ([Errno -5] No address associated with hostname)"))
+성공 - review_count=0 / created=0 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/158842
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/179110
+성공 - review_count=5 / created=5 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 10 / updated 0
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/170972
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/172201
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/174947
+성공 - review_count=5 / created=5 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 15 / updated 0
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/180827
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/180296
+성공 - review_count=5 / created=5 / updated=0
+
+[glowpick] https://glowpick.co.kr/product/165214
+성공 - review_count=5 / created=5 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 15 / updated 0
