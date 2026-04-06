@@ -10,6 +10,7 @@ repos:
     hooks:
       - id: isort
         files: ^ai-server/.*\.py$
+        args: ["--profile", "black"]  # ← 이 줄 추가!
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
