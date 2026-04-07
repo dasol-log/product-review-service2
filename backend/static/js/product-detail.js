@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // =========================================================
-    // [유지] 페이지가 열리면 필요한 DOM 요소를 먼저 가져옵니다.
-    // =========================================================
+    // [유지] 상품 상세 영역 DOM
     const productDetailBox = document.getElementById("productDetailBox");
     const productId = window.PRODUCT_ID;
 
+    // [유지] 수정 / 삭제 버튼 DOM
     const editBtn = document.getElementById("editBtn");
     const deleteBtn = document.getElementById("deleteProductBtn");
 
+    // [유지] 리뷰 작성 관련 DOM
     const reviewForm = document.getElementById("reviewCreateForm");
     const contentInput = document.getElementById("content");
     const ratingInput = document.getElementById("rating");
@@ -18,9 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // [유지] axios 또는 공통 api 인스턴스 사용
     const api = window.api || axios;
 
-    // =========================================================
-    // [유지] 로그인 토큰이 있으면 Authorization 헤더에 붙이는 공통 함수
-    // =========================================================
+    // [유지] 로그인 토큰을 헤더에 붙이는 공통 함수
     function getAuthHeaders(extraHeaders = {}) {
         const token =
             localStorage.getItem("access") ||
@@ -36,9 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return headers;
     }
 
-    // =========================================================
-    // [유지] 상품 상세 정보를 불러와 화면에 출력
-    // =========================================================
+    // [유지] 상품 상세 조회 후 화면 출력
     async function loadProductDetail() {
         try {
             const response = await api.get(`/products/api/${productId}/`);
@@ -57,10 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // =========================================================
-    // [유지 + 일부 UI 변경]
-    // 리뷰 목록을 불러와 리뷰 카드 생성
-    // =========================================================
+    // [유지 + 일부 수정] 리뷰 목록 조회 후 카드 생성
     async function loadReviews() {
         try {
             const response = await api.get(`/reviews/?product=${productId}`);
@@ -74,11 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // =====================================================
             // [추가]
-            // 변경 전 코드에는 없었음
-            // 리뷰 목록 상단에 이 기능이 무엇인지 설명하는 안내 문구 추가
-            // =====================================================
+            // 처음 코드에는 없었음
+            // 리뷰 목록 상단에 이 기능이 무엇인지 안내 문구를 보여줌
             const guideBox = document.createElement("div");
             guideBox.className = "review-guide-box";
             guideBox.innerHTML = `
@@ -92,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reviews.forEach((review) => {
                 let imagesHtml = "";
 
-                // [유지] 리뷰 이미지가 있으면 이미지 목록 생성
+                // [유지] 리뷰 이미지가 있으면 렌더링
                 if (review.images && review.images.length > 0) {
                     imagesHtml = `
                         <div style="margin-top: 12px; display:flex; flex-wrap:wrap; gap:10px;">
@@ -123,12 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         작성일: ${review.created_at || "-"}
                     </p>
 
-                    <!-- =================================================
-                         [수정]
-                         변경 전: 버튼 문구가 "AI 분석"
-                         변경 후: 버튼 문구를 "비슷한 후기 보기" 로 변경
-                         이유: 기술 용어보다 사용자 입장에서 이해하기 쉽게 바꿈
-                         ================================================= -->
+                    <!-- [수정]
+                         처음 코드: 버튼 문구가 "AI 분석"
+                         변경 후: 버튼 문구를 "비슷한 후기 보기" 로 변경 -->
                     <button
                         class="ai-analyze-btn"
                         data-review-id="${review.id}"
@@ -137,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         비슷한 후기 보기
                     </button>
 
-                    <!-- [유지] 분석 결과가 출력될 자리 -->
+                    <!-- [유지] 결과 출력 영역 -->
                     <div
                         class="ai-result-box"
                         id="ai-result-${review.id}"
@@ -148,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reviewList.appendChild(card);
             });
 
-            // [유지] 리뷰 카드 생성 후 버튼 이벤트 연결
+            // [유지] 버튼 이벤트 연결
             bindAnalyzeButtons();
 
         } catch (error) {
@@ -157,10 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // =========================================================
-    // [유지]
-    // 점수를 사용자 친화 라벨로 변환
-    // =========================================================
+    // [유지] 점수를 짧은 라벨로 변환
     function getSimilarityLabel(score) {
         if (score > 0.7) return "매우 비슷";
         if (score > 0.5) return "비슷";
@@ -168,11 +153,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return "관련 있음";
     }
 
-    // =========================================================
-    // [추가]
-    // 변경 전 코드에는 없었음
-    // 점수에 따라 부가 설명 문구를 더 자연스럽게 보여주기 위한 함수
-    // =========================================================
+    // [유지였던 추가 함수]
+    // 처음 코드에서는 없었고, 중간 변경 단계에서 추가된 설명용 함수
     function getSimilarityDescription(score) {
         if (score > 0.7) return "표현과 느낌이 매우 비슷한 후기예요.";
         if (score > 0.5) return "비슷한 의견을 담고 있는 후기예요.";
@@ -180,53 +162,42 @@ document.addEventListener("DOMContentLoaded", function () {
         return "참고용으로 볼 수 있는 후기예요.";
     }
 
-    // =========================================================
-    // [유지 + 결과 출력 UI 변경]
-    // 리뷰 카드의 버튼 클릭 이벤트 연결
-    // =========================================================
+    // [유지 + 결과 출력 부분 수정]
     function bindAnalyzeButtons() {
         const buttons = document.querySelectorAll(".ai-analyze-btn");
 
         buttons.forEach((button) => {
             button.addEventListener("click", async () => {
-                // [유지] 버튼에 저장된 review_id 추출
                 const reviewId = button.dataset.reviewId;
                 const resultBox = document.getElementById(`ai-result-${reviewId}`);
 
                 button.disabled = true;
 
-                // =================================================
                 // [수정]
-                // 변경 전: "분석 중..."
+                // 처음 코드: "분석 중..."
                 // 변경 후: "후기 찾는 중..."
-                // 이유: 사용자 입장에서 더 자연스럽게 보이도록 변경
-                // =================================================
                 button.textContent = "후기 찾는 중...";
 
                 resultBox.style.display = "block";
 
-                // =================================================
                 // [수정]
-                // 변경 전: "AI 분석 중입니다..."
+                // 처음 코드: "AI 분석 중입니다..."
                 // 변경 후: "비슷한 후기를 찾는 중입니다..."
-                // =================================================
                 resultBox.innerHTML = "<p>비슷한 후기를 찾는 중입니다...</p>";
 
                 try {
-                    // [유지] Django 분석 API 호출
+                    // [유지] Django AI 분석 API 호출
                     const response = await api.get(`/ai/reviews/${reviewId}/analyze/`);
                     const data = response.data;
 
-                    // =================================================
                     // [수정]
-                    // 변경 전:
-                    // - 제목: AI 분석 결과
-                    // - 문구: 비슷한 리뷰를 찾지 못했습니다.
+                    // 처음 코드:
+                    // - "AI 분석 결과"
+                    // - "비슷한 리뷰를 찾지 못했습니다."
                     //
                     // 변경 후:
-                    // - 제목을 더 자연스럽게 변경
-                    // - 왜 결과가 없을 수 있는지 안내 문구 추가
-                    // =================================================
+                    // - 제목 문구 변경
+                    // - 부족한 이유 설명 추가
                     if (!data.similar_reviews || data.similar_reviews.length === 0) {
                         resultBox.innerHTML = `
                             <div class="ai-result-inner">
@@ -240,33 +211,26 @@ document.addEventListener("DOMContentLoaded", function () {
                         return;
                     }
 
-                    // =================================================
                     // [추가]
-                    // 몇 개 찾았는지 사용자에게 알려주는 문구
-                    // =================================================
+                    // 처음 코드에는 없었음
+                    // 몇 개를 찾았는지 사용자에게 자연스럽게 안내
                     const countText = `비슷한 후기 ${data.similar_reviews.length}개를 찾았어요.`;
 
-                    // =================================================
                     // [수정]
-                    // 변경 전:
-                    // - "AI 분석 결과"
-                    // - "이 리뷰와 유사한 리뷰 TOP n"
-                    // - 사용자명 / 라벨 / 유사도 숫자 중심
+                    // 처음 코드:
+                    // - AI 분석 결과
+                    // - TOP n
+                    // - username / label / 숫자 중심
                     //
                     // 변경 후:
-                    // - "이 리뷰와 비슷한 다른 후기"
-                    // - 해석 문구 중심
-                    // - 숫자는 작은 글씨로 아래에 배치
-                    // =================================================
+                    // - 사용자 중심 제목
+                    // - 설명 문구 추가
+                    // - 숫자보다 의미 문구를 먼저 노출
+                    // - analysis_id 표시 추가
                     resultBox.innerHTML = `
                         <div class="ai-result-inner">
-                            <!-- [수정] 결과 제목 변경 -->
                             <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
-
-                            <!-- [수정] TOP n 문구를 더 자연스럽게 변경 -->
                             <p>${countText}</p>
-
-                            <!-- [추가] 결과 설명 -->
                             <p class="ai-sub-guide">
                                 같은 상품에 대해 비슷하게 느낀 사용자 후기입니다.
                             </p>
@@ -274,44 +238,41 @@ document.addEventListener("DOMContentLoaded", function () {
                             <ul class="ai-similar-review-list" style="margin-top:10px; padding-left:18px;">
                                 ${data.similar_reviews.map((item) => `
                                     <li class="ai-similar-review-item" style="margin-bottom:14px;">
-                                        <!-- =====================================
-                                             [수정]
-                                             변경 전:
-                                             작성자 / 라벨 / 유사도 숫자 중심
-                                             
-                                             변경 후:
-                                             "매우 비슷 / 비슷 / 약간 비슷" 같은
-                                             해석 문구를 먼저 보여줌
-                                             ===================================== -->
                                         <p>
-                                            <strong>${getSimilarityLabel(item.score)}</strong>
+                                            <!-- [수정]
+                                                 처음 코드: getSimilarityLabel(item.score)만 사용
+                                                 변경 후: 백엔드에서 내려준 label이 있으면 우선 사용 -->
+                                            <strong>${item.label || getSimilarityLabel(item.score)}</strong>
                                             : ${item.content}
                                         </p>
 
-                                        <!-- [추가] 작성자 표시 -->
+                                        <!-- [유지] 작성자 표시 -->
                                         <p><small>작성자: ${item.username}</small></p>
 
-                                        <!-- [추가] 점수 설명 문구 -->
+                                        <!-- [유지] 설명 문구 표시 -->
                                         <p><small>${getSimilarityDescription(item.score)}</small></p>
 
-                                        <!-- [수정] 유사도 숫자는 아래 작은 글씨로 이동 -->
+                                        <!-- [유지] 점수/작성일 표시 -->
                                         <p><small>유사도 ${item.score.toFixed(2)} / 작성일 ${item.created_at}</small></p>
+
+                                        <!-- [추가]
+                                             처음 코드에는 없었음
+                                             DB에 저장된 AI 결과 id를 보여줌 -->
+                                        <p><small>AI 결과 ID: ${item.analysis_id}</small></p>
                                     </li>
                                 `).join("")}
                             </ul>
 
-                            <!-- [추가] 데이터가 적을 수 있다는 안내 -->
+                            <!-- [유지] 안내 문구 -->
                             <p class="ai-sub-guide">
                                 아직 리뷰 수가 적어 결과가 제한적일 수 있어요.
                             </p>
                         </div>
                     `;
                 } catch (error) {
-                    // =================================================
                     // [수정]
-                    // 변경 전: "AI 분석 실패"
+                    // 처음 코드: "AI 분석 실패"
                     // 변경 후: "비슷한 후기 조회 실패"
-                    // =================================================
                     console.error("비슷한 후기 조회 실패:", error.response?.data || error);
 
                     const detail =
@@ -325,21 +286,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 } finally {
                     button.disabled = false;
 
-                    // =================================================
                     // [수정]
-                    // 변경 전: 버튼 문구 복원 "AI 분석"
-                    // 변경 후: 버튼 문구 복원 "비슷한 후기 보기"
-                    // =================================================
+                    // 처음 코드: "AI 분석"
+                    // 변경 후: "비슷한 후기 보기"
                     button.textContent = "비슷한 후기 보기";
                 }
             });
         });
     }
 
-    // =========================================================
-    // [유지]
-    // 리뷰 이미지 미리보기 기능
-    // =========================================================
+    // [유지] 이미지 미리보기
     if (imageInput && previewBox) {
         imageInput.addEventListener("change", function () {
             previewBox.innerHTML = "";
@@ -367,10 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // =========================================================
-    // [유지]
-    // 리뷰 작성 폼 제출 → Django에 저장 요청
-    // =========================================================
+    // [유지] 리뷰 작성 기능
     if (reviewForm) {
         reviewForm.addEventListener("submit", async function (e) {
             e.preventDefault();
@@ -395,10 +348,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
 
-                for (const pair of formData.entries()) {
-                    console.log(pair[0], pair[1]);
-                }
-
                 const response = await api.post("/reviews/", formData, {
                     headers: getAuthHeaders({
                         "Content-Type": "multipart/form-data",
@@ -412,7 +361,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 reviewForm.reset();
                 previewBox.innerHTML = "";
 
-                // [유지] 새 리뷰 반영을 위해 다시 목록 조회
                 await loadReviews();
             } catch (error) {
                 console.error("리뷰 등록 실패:", error.response?.data || error);
@@ -427,21 +375,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // =========================================================
-    // [유지]
-    // 상품 수정 페이지 이동
-    // =========================================================
+    // [유지] 상품 수정 이동
     if (editBtn) {
         editBtn.addEventListener("click", function () {
-            console.log("수정 버튼 클릭");
             window.location.href = `/products/${productId}/update/`;
         });
     }
 
-    // =========================================================
-    // [유지]
-    // 상품 삭제 요청
-    // =========================================================
+    // [유지] 상품 삭제
     if (deleteBtn) {
         deleteBtn.addEventListener("click", async function () {
             const confirmDelete = confirm("정말 이 상품을 삭제하시겠습니까?");
@@ -467,10 +408,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // =========================================================
-    // [유지]
-    // 페이지 시작 시 상품 정보와 리뷰 목록을 불러옴
-    // =========================================================
+    // [유지] 페이지 시작 시 실행
     loadProductDetail();
     loadReviews();
 });

@@ -1,19 +1,18 @@
 from requests import RequestException
 
-
-from django.shortcuts import get_object_or_404   
-# [추가] review_id로 기준 리뷰 1개를 안전하게 조회하기 위해 추가
-
-from apps.reviews.models import Review          
-# [추가] DB에서 리뷰를 조회하기 위해 추가
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 
+from django.shortcuts import get_object_or_404  
+
 from .serializers import EmbeddingRequestSerializer, SimilarityRequestSerializer
+from apps.reviews.models import Review
 from .services import FastAPIClient
+
+# [추가] AI 추론 결과 저장 모델 import
+from .models import ReviewSimilarityResult
 
 
 class EmbeddingAPIView(APIView):
@@ -52,30 +51,32 @@ class SimilarityAPIView(APIView):
             )
 
 
+# [추가] 유사도 점수 → 사용자용 문구 변환 함수
+def get_similarity_label(score: float) -> str:
+    if score > 0.7:
+        return "매우 비슷"
+    if score > 0.5:
+        return "비슷"
+    if score > 0.3:
+        return "약간 비슷"
+    return "관련 있음"
+
 class ReviewAnalyzeAPIView(APIView):
     """
-    [기능]
-    특정 리뷰 1개를 기준으로
-    같은 상품의 다른 리뷰들과 유사도를 비교하는 API
-
+    [수정]
+    특정 리뷰를 기준으로 같은 상품의 다른 리뷰들과 유사도 비교
     GET /ai/reviews/<review_id>/analyze/
 
-    [이전 코드]
-    - 사용자가 text1, text2를 직접 입력해서 비교
-    - 결과는 {"similarity": 점수} 정도의 단순 응답
-
-    [현재 코드]
-    - review_id만 받음
-    - Django가 DB에서 기준 리뷰와 후보 리뷰들을 조회
-    - FastAPI로 여러 리뷰를 반복 비교
-    - 점수 기준(threshold) 이상만 남김
-    - 화면에서 바로 쓸 수 있는 형태로 반환
+    변경점:
+    - 유사도 기준값(threshold) 적용
+    - 결과를 DB에 저장
     """
     permission_classes = [AllowAny]
 
-    # 이전 코드에는 없었고,
-    # 너무 낮은 유사도 결과는 화면에 안 보여주기 위한 기준값
     SIMILARITY_THRESHOLD = 0.45
+
+    # [추가] 현재 사용 중인 모델 이름 저장용 상수
+    MODEL_NAME = "upskyy/e5-small-korean"
 
     def get(self, request, review_id):
         # [흐름 1] 기준 리뷰 1개 조회
@@ -122,16 +123,37 @@ class ReviewAnalyzeAPIView(APIView):
 
                 # [흐름 5] threshold 기준 적용
                 if score >= self.SIMILARITY_THRESHOLD:
+                    similarity_label = get_similarity_label(score)
+
+                    # ============================
+                    # [추가] DB 저장 또는 갱신
+                    # ============================
+                    saved_result, _ = ReviewSimilarityResult.objects.update_or_create(
+                        source_review=source_review,
+                        compared_review=candidate,
+                        model_name=self.MODEL_NAME,
+                        defaults={
+                            "product": source_review.product,
+                            "requested_by": request.user if request.user.is_authenticated else None,
+                            "similarity_score": score,
+                            "similarity_label": similarity_label,
+                            "similarity_threshold": self.SIMILARITY_THRESHOLD,
+                            "source_review_snapshot": source_review.content,
+                            "compared_review_snapshot": candidate.content,
+                            "compared_username_snapshot": candidate.user.username,
+                        }
+                    )
                     results.append({
+                        "analysis_id": saved_result.id,  # [추가] 저장된 AI 결과 id
                         "review_id": candidate.id,
                         "username": candidate.user.username,
                         "content": candidate.content,
                         "score": score,
+                        "label": similarity_label,  # [추가] 프론트에서 바로 사용 가능
                         "created_at": candidate.created_at.strftime("%Y-%m-%d %H:%M"),
                     })
 
         except RequestException as e:
-            # [유지] FastAPI 호출 실패 시 502 반환
             return Response(
                 {"detail": f"FastAPI 호출 실패: {str(e)}"},
                 status=status.HTTP_502_BAD_GATEWAY
@@ -162,6 +184,9 @@ class ReviewAnalyzeAPIView(APIView):
                 # [현재 코드에서 추가]
                 # 프론트/디버깅 시 현재 기준값 확인용
                 "similarity_threshold": self.SIMILARITY_THRESHOLD,
+
+                # [추가] 현재 사용 모델 정보
+                "model_name": self.MODEL_NAME,
             },
             status=status.HTTP_200_OK
         )
