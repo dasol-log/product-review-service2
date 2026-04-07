@@ -1,4 +1,12 @@
-from requests import RequestException
+import uuid
+# [수정]
+# 기존: from requests import RequestException
+# 변경: requests.exceptions 에서 직접 import
+from requests.exceptions import RequestException
+
+# [추가]
+# Celery 작업의 현재 상태 조회를 위해 AsyncResult import 추가
+from celery.result import AsyncResult
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -6,37 +14,67 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 
 from django.shortcuts import get_object_or_404  
+from apps.reviews.models import Review
 
 from .serializers import EmbeddingRequestSerializer, SimilarityRequestSerializer
-from apps.reviews.models import Review
 from .services import FastAPIClient
 
-# [추가] AI 추론 결과 저장 모델 import
-from .models import ReviewSimilarityResult
+# [수정]
+# 기존: ReviewSimilarityResult 를 import 해서 View 안에서 직접 저장했음
+# 변경: 비동기 작업 상태 저장용 AIAnalysisTask import
+from .models import AIAnalysisTask
+
+# [추가]
+# 실제 AI 분석은 Celery task로 이동했으므로 task import 추가
+from .tasks import analyze_review_similarity_task
 
 
 class EmbeddingAPIView(APIView):
+    """
+    [유지]
+    Django -> FastAPI 임베딩 요청
+    POST /ai/embed/
+    """
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = EmbeddingRequestSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         texts = serializer.validated_data["texts"]
 
         try:
-            # 현재 구조 유지: 한 문장씩 보내서 리스트로 반환
-            embeddings = [FastAPIClient.get_embedding(text) for text in texts]
-            return Response({"embeddings": embeddings}, status=status.HTTP_200_OK)
+            result = FastAPIClient.get_embeddings(texts)
+            return Response(result, status=status.HTTP_200_OK)
+
         except RequestException as e:
             return Response(
                 {"detail": f"FastAPI 호출 실패: {str(e)}"},
-                status=status.HTTP_502_BAD_GATEWAY,
+                status=status.HTTP_502_BAD_GATEWAY
             )
 
 
 class SimilarityAPIView(APIView):
+    """
+    [유지]
+    Django -> FastAPI 유사도 요청
+    POST /ai/similarity/
+    """
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = SimilarityRequestSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         text1 = serializer.validated_data["text1"]
         text2 = serializer.validated_data["text2"]
@@ -44,149 +82,140 @@ class SimilarityAPIView(APIView):
         try:
             result = FastAPIClient.get_similarity(text1, text2)
             return Response(result, status=status.HTTP_200_OK)
-        except RequestException as e:
-            return Response(
-                {"detail": f"FastAPI 호출 실패: {str(e)}"},
-                status=status.HTTP_502_BAD_GATEWAY,
-            )
-
-
-# [추가] 유사도 점수 → 사용자용 문구 변환 함수
-def get_similarity_label(score: float) -> str:
-    if score > 0.7:
-        return "매우 비슷"
-    if score > 0.5:
-        return "비슷"
-    if score > 0.3:
-        return "약간 비슷"
-    return "관련 있음"
-
-class ReviewAnalyzeAPIView(APIView):
-    """
-    [수정]
-    특정 리뷰를 기준으로 같은 상품의 다른 리뷰들과 유사도 비교
-    GET /ai/reviews/<review_id>/analyze/
-
-    변경점:
-    - 유사도 기준값(threshold) 적용
-    - 결과를 DB에 저장
-    """
-    permission_classes = [AllowAny]
-
-    SIMILARITY_THRESHOLD = 0.45
-
-    # [추가] 현재 사용 중인 모델 이름 저장용 상수
-    MODEL_NAME = "upskyy/e5-small-korean"
-
-    def get(self, request, review_id):
-        # [흐름 1] 기준 리뷰 1개 조회
-        source_review = get_object_or_404(
-            Review.objects.select_related("user", "product"),
-            id=review_id,
-            is_public=True,
-        )
-        # [흐름 2] 같은 상품의 다른 리뷰들을 비교 후보로 조회
-        candidate_reviews = (
-            Review.objects
-            .select_related("user")
-            .filter(
-                product=source_review.product,
-                is_public=True
-            )
-            .exclude(id=source_review.id)
-            .order_by("-created_at")[:20]
-        )
-        # [흐름 3] 기준 리뷰 내용 검사
-        if not source_review.content.strip():
-            return Response(
-                {"detail": "분석할 리뷰 내용이 없습니다."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        results = []
-
-        try:
-            # [흐름 4] 후보 리뷰들을 하나씩 FastAPI에 보내 유사도 비교
-            for candidate in candidate_reviews:
-                if not candidate.content.strip():
-                    continue
-
-                similarity_result = FastAPIClient.get_similarity(
-                    source_review.content,
-                    candidate.content
-                )
-
-                # [현재 코드에서 분리]
-                # 이전 코드에서는 결과를 바로 append 했다면,
-                # 지금은 먼저 score 변수로 꺼내서 threshold 비교에 사용
-                score = round(similarity_result["similarity"], 4)
-
-                # [흐름 5] threshold 기준 적용
-                if score >= self.SIMILARITY_THRESHOLD:
-                    similarity_label = get_similarity_label(score)
-
-                    # ============================
-                    # [추가] DB 저장 또는 갱신
-                    # ============================
-                    saved_result, _ = ReviewSimilarityResult.objects.update_or_create(
-                        source_review=source_review,
-                        compared_review=candidate,
-                        model_name=self.MODEL_NAME,
-                        defaults={
-                            "product": source_review.product,
-                            "requested_by": request.user if request.user.is_authenticated else None,
-                            "similarity_score": score,
-                            "similarity_label": similarity_label,
-                            "similarity_threshold": self.SIMILARITY_THRESHOLD,
-                            "source_review_snapshot": source_review.content,
-                            "compared_review_snapshot": candidate.content,
-                            "compared_username_snapshot": candidate.user.username,
-                        }
-                    )
-                    results.append({
-                        "analysis_id": saved_result.id,  # [추가] 저장된 AI 결과 id
-                        "review_id": candidate.id,
-                        "username": candidate.user.username,
-                        "content": candidate.content,
-                        "score": score,
-                        "label": similarity_label,  # [추가] 프론트에서 바로 사용 가능
-                        "created_at": candidate.created_at.strftime("%Y-%m-%d %H:%M"),
-                    })
 
         except RequestException as e:
             return Response(
                 {"detail": f"FastAPI 호출 실패: {str(e)}"},
                 status=status.HTTP_502_BAD_GATEWAY
             )
-        
-        # [흐름 6] 점수 높은 순으로 정렬
-        results.sort(key=lambda x: x["score"], reverse=True)
 
-        # [흐름 7] 상위 3개만 최종 선택
-        top_results = results[:3]
+"""
+[삭제]
+기존 코드에는 View 안에서 직접 유사도 라벨을 만들기 위해
+get_similarity_label() 함수가 있었음
+변경 후에는 실제 유사도 계산과 라벨 생성이 tasks.py 로 이동했으므로
+views.py 에서는 더 이상 이 함수가 필요 없어짐
+"""
 
-        # [흐름 8] 프론트에서 바로 쓸 수 있는 JSON 구조로 반환
+class ReviewAnalyzeAPIView(APIView):
+    """
+    [수정]
+    기존:
+    GET /ai/reviews/<review_id>/analyze/
+    -> View 안에서 FastAPI 직접 호출
+    -> DB 저장
+    -> 결과 즉시 반환
+
+    변경:
+    POST /ai/reviews/<review_id>/analyze/
+    -> Celery 작업만 등록
+    -> task_id 반환
+    """
+    permission_classes = [AllowAny]
+
+    # [수정]
+    # 기존 코드에는 SIMILARITY_THRESHOLD, MODEL_NAME 상수가 클래스 내부에 있었음
+    # 변경 후에는 실제 분석 로직이 tasks.py 로 이동했으므로 여기서는 제거됨
+
+    def post(self, request, review_id):
+        # [유지]
+        # 기준 리뷰 존재 여부 먼저 확인
+        source_review = get_object_or_404(
+            Review.objects.select_related("user", "product"),
+            id=review_id,
+            is_public=True,
+        )
+
+        # [유지]
+        # 기준 리뷰 내용이 비어 있으면 작업 등록 전 바로 에러 반환
+        if not source_review.content.strip():
+            return Response(
+                {"detail": "분석할 리뷰 내용이 없습니다."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # [추가]
+        # 로그인 사용자인 경우 요청자 ID 저장
+        requested_by_id = request.user.id if request.user.is_authenticated else None
+
+        # ✅ 먼저 Celery task 시작 (UUID 자동 생성됨)
+        async_result = analyze_review_similarity_task.apply_async(
+            args=[source_review.id, requested_by_id],
+        )
+
+        """
+        [추가]
+        기존 코드에는 없었음
+        작업 시작 전 DB에 작업 상태를 먼저 저장
+        나중에 상태 조회 API에서 이 레코드를 사용함
+        """
+        AIAnalysisTask.objects.create(
+            source_review=source_review,
+            requested_by_id=requested_by_id,
+            task_id=async_result.id,
+            status=AIAnalysisTask.STATUS_PENDING,
+            model_name="upskyy/e5-small-korean",
+            similarity_threshold=0.45,
+        )
+
+        """
+        [수정]
+        기존:
+        200 OK + 분석 결과(JSON) 즉시 반환
+        변경:
+        202 ACCEPTED + task_id만 반환
+        실제 결과는 나중에 상태 조회 API로 확인
+        """
         return Response(
             {
-                "source_review": {
-                    "review_id": source_review.id,
-                    "username": source_review.user.username,
-                    "content": source_review.content,
-                },
-
-                # [유지] threshold 적용 + 정렬 후 Top 3 결과
-                "similar_reviews": top_results,
-
-                # [현재 코드에서 추가]
-                # 프론트에서 "비교할 리뷰가 몇 개 있었는지" 안내 문구에 활용 가능
-                "candidate_count": candidate_reviews.count(),
-
-                # [현재 코드에서 추가]
-                # 프론트/디버깅 시 현재 기준값 확인용
-                "similarity_threshold": self.SIMILARITY_THRESHOLD,
-
-                # [추가] 현재 사용 모델 정보
-                "model_name": self.MODEL_NAME,
+                "detail": "AI 분석 작업이 등록되었습니다.",
+                "task_id": async_result.id,
+                "status": "PENDING",
+                "review_id": source_review.id,
             },
-            status=status.HTTP_200_OK
+            status=status.HTTP_202_ACCEPTED,
         )
+
+
+class ReviewAnalyzeTaskStatusAPIView(APIView):
+    """
+    [추가]
+    Celery 작업 상태 조회 API
+    GET /ai/tasks/<task_id>/status/
+
+    역할:
+    - 현재 작업 상태 확인
+    - DB에 기록된 상태 확인
+    - 작업 성공 시 최종 결과도 함께 반환
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request, task_id):
+        # [추가]
+        # DB에 저장된 작업 상태 레코드 조회
+        task_obj = get_object_or_404(AIAnalysisTask, task_id=task_id)
+
+        # [추가]
+        # Celery 백엔드 기준 실제 task 상태 조회
+        async_result = AsyncResult(task_id)
+
+        # [추가]
+        # 상태 조회용 기본 응답 데이터 구성
+        response_data = {
+            "task_id": task_id,
+            "status": async_result.status,
+            "db_status": task_obj.status,
+            "error_message": task_obj.error_message,
+            "candidate_count": task_obj.candidate_count,
+            "result_count": task_obj.result_count,
+            "created_at": task_obj.created_at,
+            "started_at": task_obj.started_at,
+            "finished_at": task_obj.finished_at,
+        }
+
+        # [추가]
+        # 작업이 성공 완료된 경우 Celery task가 반환한 최종 결과 포함
+        if async_result.successful():
+            response_data["result"] = async_result.result
+
+        return Response(response_data, status=status.HTTP_200_OK)

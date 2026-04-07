@@ -9,12 +9,47 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+import os
 import environ  
 from pathlib import Path
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# [추가] Celery + Redis 설정
+
+# [수정]  
+REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379/0")
+
+# [추가] Celery broker / backend
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+
+# [추가] 직렬화 포맷
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+# [추가] 시간대
+CELERY_TIMEZONE = "Asia/Seoul"
+
+# [추가] 작업 결과 만료 시간(1시간)
+CELERY_RESULT_EXPIRES = 3600
+
+# [추가] worker가 한 번에 너무 많은 작업을 오래 붙잡지 않도록 설정
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+
+# [추가] 작업 시작 상태 추적
+CELERY_TASK_TRACK_STARTED = True
+
+# [추가] 긴 작업 안정성용
+CELERY_TASK_TIME_LIMIT = 60 * 10
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 8
+
+# [추가] 테스트/개발 중 eager 모드 쓰고 싶으면 환경변수로 제어 가능
+CELERY_TASK_ALWAYS_EAGER = os.getenv("CELERY_TASK_ALWAYS_EAGER", "False") == "True"
+CELERY_TASK_EAGER_PROPAGATES = True
 
 env = environ.Env()  
 environ.Env.read_env(BASE_DIR / ".env")
@@ -92,7 +127,6 @@ DATABASES = {
         "PORT": env("DB_PORT", default="5435"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

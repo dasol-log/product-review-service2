@@ -1,17 +1,14 @@
-# [추가] AI 추론 결과를 DRF DB에 저장하기 위한 모델 파일
-
 from django.conf import settings
 from django.db import models
 
 
 class ReviewSimilarityResult(models.Model):
     """
-    [추가]
-    특정 기준 리뷰(source_review)와 비교 리뷰(compared_review)의
-    유사도 결과를 저장하는 모델
+    [유지]
+    AI 유사도 분석 결과 저장 모델 (최종 결과 데이터)
     """
 
-    # 어떤 상품 안에서 비교했는지 저장
+    # 어떤 상품 기준으로 분석했는지 연결
     product = models.ForeignKey(
         "products.Product",
         on_delete=models.CASCADE,
@@ -87,3 +84,82 @@ class ReviewSimilarityResult(models.Model):
             f"vs compared={self.compared_review_id} "
             f"score={self.similarity_score:.4f}"
         )
+    
+
+class AIAnalysisTask(models.Model):
+    """
+    [추가]
+    Celery 비동기 작업 상태를 DB에서 추적하기 위한 모델
+    """
+    # [상태 값 정의]
+    STATUS_PENDING = "PENDING"     # 작업 대기중
+    STATUS_STARTED = "STARTED"     # 작업 진행중
+    STATUS_SUCCESS = "SUCCESS"     # 작업 완료
+    STATUS_FAILURE = "FAILURE"     # 작업 실패
+
+    STATUS_CHOICES = [
+        (STATUS_PENDING, "대기중"),
+        (STATUS_STARTED, "진행중"),
+        (STATUS_SUCCESS, "완료"),
+        (STATUS_FAILURE, "실패"),
+    ]
+
+    # [어떤 리뷰를 분석했는지]
+    source_review = models.ForeignKey(
+        "reviews.Review",
+        on_delete=models.CASCADE,
+        related_name="ai_analysis_tasks",
+    )
+
+    # [누가 요청했는지]
+    requested_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="ai_analysis_tasks",
+    )
+    # 어떤 사용자가 분석 요청했는지 (로그 추적용)
+
+    
+    # [Celery 연결 키]
+    task_id = models.CharField(
+        max_length=255,
+        unique=True,
+        db_index=True,
+    )
+    # Celery 작업 고유 ID (이걸로 작업 상태 추적)
+    
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_PENDING,
+    )
+
+    model_name = models.CharField(
+        max_length=100,
+        default="upskyy/e5-small-korean",
+    )
+
+    # [유사도 기준값]
+    similarity_threshold = models.FloatField(default=0.45)
+
+    # [분석 통계]
+    candidate_count = models.PositiveIntegerField(default=0)
+
+    # 비교 대상 리뷰 개수
+    result_count = models.PositiveIntegerField(default=0)
+
+    # [에러 정보]
+    error_message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    started_at = models.DateTimeField(null=True, blank=True)
+    finished_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    # [관리자 표시용]
+    def __str__(self):
+        return f"{self.task_id} - {self.status}"
+    # admin / 로그에서 "task_id - 상태" 형태로 표시

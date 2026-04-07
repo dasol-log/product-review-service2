@@ -13,6 +13,57 @@ services:
       - "5435:5432"
     volumes:
       - product_review_postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network   # [추가] 다른 컨테이너와 통신하기 위한 네트워크 연결
+
+  # [추가] Django (DRF 서버)
+  web:
+    build: .
+    container_name: drf-web
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always   # [추가] 컨테이너 종료 시 자동 재시작
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db           # [추가] DB 먼저 실행
+      - redis        # [추가] Redis 먼저 실행
+    networks:
+      - app-network
+
+  # [추가] Celery Worker
+  celery:
+    build: .
+    container_name: celery-worker
+    command: celery -A mysite worker --loglevel=info --pool=solo
+    restart: always   # [추가] worker 자동 재시작
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db           # [추가] DB 먼저 실행
+      - redis        # [추가] Redis 먼저 실행
+      - web          # [추가] Django 코드 기준으로 worker 실행
+    networks:
+      - app-network
+
+  # [추가] Redis (Celery Broker + Result Backend)
+  redis:
+    image: redis:7
+    container_name: redis-new
+    restart: always   # [추가] Redis 자동 재시작
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
 
 volumes:
   product_review_postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

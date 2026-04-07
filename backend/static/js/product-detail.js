@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // [유지 + 일부 수정] 리뷰 목록 조회 후 카드 생성
+    // [유지] 리뷰 목록 조회 후 카드 생성
     async function loadReviews() {
         try {
             const response = await api.get(`/reviews/?product=${productId}`);
@@ -67,9 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // [추가]
-            // 처음 코드에는 없었음
-            // 리뷰 목록 상단에 이 기능이 무엇인지 안내 문구를 보여줌
+            // 안내 문구
             const guideBox = document.createElement("div");
             guideBox.className = "review-guide-box";
             guideBox.innerHTML = `
@@ -83,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reviews.forEach((review) => {
                 let imagesHtml = "";
 
-                // [유지] 리뷰 이미지가 있으면 렌더링
+                // 리뷰 이미지가 있으면 렌더링
                 if (review.images && review.images.length > 0) {
                     imagesHtml = `
                         <div style="margin-top: 12px; display:flex; flex-wrap:wrap; gap:10px;">
@@ -114,9 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         작성일: ${review.created_at || "-"}
                     </p>
 
-                    <!-- [수정]
-                         처음 코드: 버튼 문구가 "AI 분석"
-                         변경 후: 버튼 문구를 "비슷한 후기 보기" 로 변경 -->
                     <button
                         class="ai-analyze-btn"
                         data-review-id="${review.id}"
@@ -125,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         비슷한 후기 보기
                     </button>
 
-                    <!-- [유지] 결과 출력 영역 -->
                     <div
                         class="ai-result-box"
                         id="ai-result-${review.id}"
@@ -136,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 reviewList.appendChild(card);
             });
 
-            // [유지] 버튼 이벤트 연결
             bindAnalyzeButtons();
 
         } catch (error) {
@@ -153,8 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return "관련 있음";
     }
 
-    // [유지였던 추가 함수]
-    // 처음 코드에서는 없었고, 중간 변경 단계에서 추가된 설명용 함수
+    // 설명 문구
     function getSimilarityDescription(score) {
         if (score > 0.7) return "표현과 느낌이 매우 비슷한 후기예요.";
         if (score > 0.5) return "비슷한 의견을 담고 있는 후기예요.";
@@ -162,43 +154,21 @@ document.addEventListener("DOMContentLoaded", function () {
         return "참고용으로 볼 수 있는 후기예요.";
     }
 
-    // [유지 + 결과 출력 부분 수정]
-    function bindAnalyzeButtons() {
-        const buttons = document.querySelectorAll(".ai-analyze-btn");
+    // =========================================================
+    // [추가] Celery 상태 polling 함수
+    // =========================================================
+    async function pollTaskStatus(taskId, reviewId, button, resultBox) {
+        const intervalId = setInterval(async () => {
+            try {
+                const response = await api.get(`/ai/tasks/${taskId}/status/`);
+                const data = response.data;
 
-        buttons.forEach((button) => {
-            button.addEventListener("click", async () => {
-                const reviewId = button.dataset.reviewId;
-                const resultBox = document.getElementById(`ai-result-${reviewId}`);
+                if (data.status === "SUCCESS") {
+                    clearInterval(intervalId);
 
-                button.disabled = true;
+                    const result = data.result || {};
 
-                // [수정]
-                // 처음 코드: "분석 중..."
-                // 변경 후: "후기 찾는 중..."
-                button.textContent = "후기 찾는 중...";
-
-                resultBox.style.display = "block";
-
-                // [수정]
-                // 처음 코드: "AI 분석 중입니다..."
-                // 변경 후: "비슷한 후기를 찾는 중입니다..."
-                resultBox.innerHTML = "<p>비슷한 후기를 찾는 중입니다...</p>";
-
-                try {
-                    // [유지] Django AI 분석 API 호출
-                    const response = await api.get(`/ai/reviews/${reviewId}/analyze/`);
-                    const data = response.data;
-
-                    // [수정]
-                    // 처음 코드:
-                    // - "AI 분석 결과"
-                    // - "비슷한 리뷰를 찾지 못했습니다."
-                    //
-                    // 변경 후:
-                    // - 제목 문구 변경
-                    // - 부족한 이유 설명 추가
-                    if (!data.similar_reviews || data.similar_reviews.length === 0) {
+                    if (!result.similar_reviews || result.similar_reviews.length === 0) {
                         resultBox.innerHTML = `
                             <div class="ai-result-inner">
                                 <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
@@ -208,87 +178,91 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </p>
                             </div>
                         `;
-                        return;
+                    } else {
+                        const countText = `비슷한 후기 ${result.similar_reviews.length}개를 찾았어요.`;
+
+                        resultBox.innerHTML = `
+                            <div class="ai-result-inner">
+                                <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
+                                <p>${countText}</p>
+                                <p class="ai-sub-guide">
+                                    같은 상품에 대해 비슷하게 느낀 사용자 후기입니다.
+                                </p>
+
+                                <ul class="ai-similar-review-list" style="margin-top:10px; padding-left:18px;">
+                                    ${result.similar_reviews.map((item) => `
+                                        <li class="ai-similar-review-item" style="margin-bottom:14px;">
+                                            <p>
+                                                <strong>${item.label || getSimilarityLabel(item.score)}</strong>
+                                                : ${item.content}
+                                            </p>
+                                            <p><small>작성자: ${item.username}</small></p>
+                                            <p><small>${getSimilarityDescription(item.score)}</small></p>
+                                            <p><small>유사도 ${item.score.toFixed(2)} / 작성일 ${item.created_at}</small></p>
+                                            <p><small>AI 결과 ID: ${item.analysis_id}</small></p>
+                                        </li>
+                                    `).join("")}
+                                </ul>
+
+                                <p class="ai-sub-guide">
+                                    아직 리뷰 수가 적어 결과가 제한적일 수 있어요.
+                                </p>
+                            </div>
+                        `;
                     }
 
-                    // [추가]
-                    // 처음 코드에는 없었음
-                    // 몇 개를 찾았는지 사용자에게 자연스럽게 안내
-                    const countText = `비슷한 후기 ${data.similar_reviews.length}개를 찾았어요.`;
-
-                    // [수정]
-                    // 처음 코드:
-                    // - AI 분석 결과
-                    // - TOP n
-                    // - username / label / 숫자 중심
-                    //
-                    // 변경 후:
-                    // - 사용자 중심 제목
-                    // - 설명 문구 추가
-                    // - 숫자보다 의미 문구를 먼저 노출
-                    // - analysis_id 표시 추가
-                    resultBox.innerHTML = `
-                        <div class="ai-result-inner">
-                            <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
-                            <p>${countText}</p>
-                            <p class="ai-sub-guide">
-                                같은 상품에 대해 비슷하게 느낀 사용자 후기입니다.
-                            </p>
-
-                            <ul class="ai-similar-review-list" style="margin-top:10px; padding-left:18px;">
-                                ${data.similar_reviews.map((item) => `
-                                    <li class="ai-similar-review-item" style="margin-bottom:14px;">
-                                        <p>
-                                            <!-- [수정]
-                                                 처음 코드: getSimilarityLabel(item.score)만 사용
-                                                 변경 후: 백엔드에서 내려준 label이 있으면 우선 사용 -->
-                                            <strong>${item.label || getSimilarityLabel(item.score)}</strong>
-                                            : ${item.content}
-                                        </p>
-
-                                        <!-- [유지] 작성자 표시 -->
-                                        <p><small>작성자: ${item.username}</small></p>
-
-                                        <!-- [유지] 설명 문구 표시 -->
-                                        <p><small>${getSimilarityDescription(item.score)}</small></p>
-
-                                        <!-- [유지] 점수/작성일 표시 -->
-                                        <p><small>유사도 ${item.score.toFixed(2)} / 작성일 ${item.created_at}</small></p>
-
-                                        <!-- [추가]
-                                             처음 코드에는 없었음
-                                             DB에 저장된 AI 결과 id를 보여줌 -->
-                                        <p><small>AI 결과 ID: ${item.analysis_id}</small></p>
-                                    </li>
-                                `).join("")}
-                            </ul>
-
-                            <!-- [유지] 안내 문구 -->
-                            <p class="ai-sub-guide">
-                                아직 리뷰 수가 적어 결과가 제한적일 수 있어요.
-                            </p>
-                        </div>
-                    `;
-                } catch (error) {
-                    // [수정]
-                    // 처음 코드: "AI 분석 실패"
-                    // 변경 후: "비슷한 후기 조회 실패"
-                    console.error("비슷한 후기 조회 실패:", error.response?.data || error);
-
-                    const detail =
-                        error.response?.data?.detail || "후기를 불러오는 중 오류가 발생했습니다.";
-
-                    resultBox.innerHTML = `
-                        <div class="ai-result-inner error">
-                            <p>${detail}</p>
-                        </div>
-                    `;
-                } finally {
                     button.disabled = false;
+                    button.textContent = "비슷한 후기 보기";
+                    return;
+                }
 
-                    // [수정]
-                    // 처음 코드: "AI 분석"
-                    // 변경 후: "비슷한 후기 보기"
+                // 진행 중 상태 표시
+                resultBox.innerHTML = `<p>분석 중... (${data.status})</p>`;
+
+            } catch (error) {
+                clearInterval(intervalId);
+                resultBox.innerHTML = `<p>작업 조회 실패</p>`;
+                button.disabled = false;
+                button.textContent = "비슷한 후기 보기";
+            }
+        }, 1500);
+    }
+
+    // =========================================================
+    // [수정] AI 분석 버튼 - Celery 비동기 방식으로 변경
+    // =========================================================
+    function bindAnalyzeButtons() {
+        const buttons = document.querySelectorAll(".ai-analyze-btn");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", async () => {
+                const reviewId = button.dataset.reviewId;
+                const resultBox = document.getElementById(`ai-result-${reviewId}`);
+
+                button.disabled = true;
+                button.textContent = "작업 등록 중...";
+
+                resultBox.style.display = "block";
+                resultBox.innerHTML = "<p>작업 등록 중...</p>";
+
+                try {
+                    // [핵심 수정] POST 방식으로 Celery 작업 등록
+                    const response = await api.post(
+                        `/ai/reviews/${reviewId}/analyze/`,
+                        {},
+                        { headers: getAuthHeaders() }
+                    );
+
+                    const taskId = response.data.task_id;
+
+                    // task_id 기반 polling 시작
+                    button.textContent = "분석 진행 중...";
+                    pollTaskStatus(taskId, reviewId, button, resultBox);
+
+                } catch (error) {
+                    console.error("작업 등록 실패:", error.response?.data || error);
+                    resultBox.innerHTML = `<p>작업 등록 실패</p>`;
+                    button.disabled = false;
                     button.textContent = "비슷한 후기 보기";
                 }
             });
