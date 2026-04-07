@@ -721,3 +721,40 @@ footer{
         padding: 24px;
     }
 }
+
+.ai-analyze-btn {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ai-analyze-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.ai-result-box {
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.ai-result-inner p {
+    margin: 6px 0;
+}
+
+.ai-similar-review-list {
+    margin-top: 10px;
+    padding-left: 18px;
+}
+
+.ai-similar-review-item {
+    margin-bottom: 12px;
+}
