@@ -10026,3 +10026,325 @@ scheduled_crawl 시작
 실행할 대상이 없습니다.
 scheduled_crawl 시작
 실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/180827
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/180296
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/165214
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 15
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/147139
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/178472
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/161507
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 15
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/148679
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/157909
+성공 - review_count=5 / created=0 / updated=5
+
+[hwahae] https://www.hwahae.co.kr/goods/70767
+성공 - review_count=2 / created=0 / updated=2
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 12
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/69344
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/46604
+성공 - review_count=2 / created=0 / updated=2
+
+scheduled_crawl 종료
+총 2개 / 성공 2 / 실패 0 / created 0 / updated 4
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/45194
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+[hwahae] https://www.hwahae.co.kr/goods/76486
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 2개 / 성공 2 / 실패 0 / created 0 / updated 0
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/45194
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+[hwahae] https://www.hwahae.co.kr/goods/76486
+성공 - review_count=2 / created=0 / updated=2
+
+scheduled_crawl 종료
+총 2개 / 성공 2 / 실패 0 / created 0 / updated 2
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/75134
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/61437
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/65655
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 4
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/65655
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/60843
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/68900
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 4
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/68900
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/65765
+성공 - review_count=1 / created=0 / updated=1
+
+[hwahae] https://www.hwahae.co.kr/goods/74990
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 3
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/74990
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/52178
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/69026
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 4
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/69026
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/75340
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/74979
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 4
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/74979
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/77272
+성공 - review_count=0 / created=0 / updated=0
+
+[hwahae] https://www.hwahae.co.kr/goods/75005
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 2
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/75005
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/55548
+성공 - review_count=2 / created=0 / updated=2
+
+[hwahae] https://www.hwahae.co.kr/goods/75592
+hwahae 리뷰 수집 실패: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 4
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/75592
+성공 - review_count=2 / created=0 / updated=2
+
+[danawa] https://prod.danawa.com/info/?pcode=00000000
+성공 - review_count=0 / created=0 / updated=0
+
+[glowpick] https://www.glowpick.com/products/00000
+성공 - review_count=0 / created=0 / updated=0
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 2
+scheduled_crawl 시작
+
+[hwahae] https://www.hwahae.co.kr/goods/70006
+성공 - review_count=2 / created=0 / updated=2
+
+[glowpick] https://glowpick.co.kr/product/152936
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/183462
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 12
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/147861
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/177151
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/172566
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 15
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/183461
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/185337
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/158842
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 15
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/179110
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/170972
+성공 - review_count=5 / created=0 / updated=5
+
+[glowpick] https://glowpick.co.kr/product/172201
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 3개 / 성공 3 / 실패 0 / created 0 / updated 15
+scheduled_crawl 시작
+
+[glowpick] https://glowpick.co.kr/product/174947
+성공 - review_count=5 / created=0 / updated=5
+
+scheduled_crawl 종료
+총 1개 / 성공 1 / 실패 0 / created 0 / updated 5
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.
+scheduled_crawl 시작
+실행할 대상이 없습니다.

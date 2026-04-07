@@ -54,30 +54,37 @@ class SimilarityAPIView(APIView):
 
 class ReviewAnalyzeAPIView(APIView):
     """
-    [추가]
-    특정 리뷰를 기준으로 같은 상품의 다른 리뷰들과 유사도 비교
+    [기능]
+    특정 리뷰 1개를 기준으로
+    같은 상품의 다른 리뷰들과 유사도를 비교하는 API
+
     GET /ai/reviews/<review_id>/analyze/
 
-    [이전 코드와 차이]
-    - 이전 SimilarityAPIView:
-      사용자가 text1, text2를 직접 보내면 그 두 문장을 비교했음
-    - 현재 ReviewAnalyzeAPIView:
-      review_id만 받으면 Django가 DB에서 리뷰를 조회해서
-      같은 상품의 다른 리뷰들과 자동으로 비교함
-    """
-    permission_classes = [AllowAny]  # [추가] 로그인하지 않아도 분석 결과 조회 가능하도록 설정
+    [이전 코드]
+    - 사용자가 text1, text2를 직접 입력해서 비교
+    - 결과는 {"similarity": 점수} 정도의 단순 응답
 
-    def get(self, request, review_id):  # [변경] post()가 아니라 get() 사용 / text1, text2 직접 안 받음
+    [현재 코드]
+    - review_id만 받음
+    - Django가 DB에서 기준 리뷰와 후보 리뷰들을 조회
+    - FastAPI로 여러 리뷰를 반복 비교
+    - 점수 기준(threshold) 이상만 남김
+    - 화면에서 바로 쓸 수 있는 형태로 반환
+    """
+    permission_classes = [AllowAny]
+
+    # 이전 코드에는 없었고,
+    # 너무 낮은 유사도 결과는 화면에 안 보여주기 위한 기준값
+    SIMILARITY_THRESHOLD = 0.45
+
+    def get(self, request, review_id):
+        # [흐름 1] 기준 리뷰 1개 조회
         source_review = get_object_or_404(
             Review.objects.select_related("user", "product"),
             id=review_id,
             is_public=True,
         )
-        # [추가]
-        # review_id에 해당하는 기준 리뷰 1개를 DB에서 조회
-        # 이전 코드와 달리 사용자가 문장을 직접 보내지 않고,
-        # Django가 리뷰 본문을 DB에서 직접 가져옴
-
+        # [흐름 2] 같은 상품의 다른 리뷰들을 비교 후보로 조회
         candidate_reviews = (
             Review.objects
             .select_related("user")
@@ -88,69 +95,55 @@ class ReviewAnalyzeAPIView(APIView):
             .exclude(id=source_review.id)
             .order_by("-created_at")[:20]
         )
-        # [추가]
-        # 같은 상품의 다른 리뷰들을 비교 후보로 조회
-        # - 같은 product만 가져옴
-        # - 자기 자신 리뷰는 제외
-        # - 최신순 정렬
-        # - 최대 20개까지만 비교
-
+        # [흐름 3] 기준 리뷰 내용 검사
         if not source_review.content.strip():
             return Response(
                 {"detail": "분석할 리뷰 내용이 없습니다."},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        # [추가]
-        # 기준 리뷰 본문이 비어 있으면 FastAPI에 보낼 수 없으므로 여기서 미리 차단
 
         results = []
-        # [추가]
-        # 비교 결과를 모아둘 리스트
 
         try:
+            # [흐름 4] 후보 리뷰들을 하나씩 FastAPI에 보내 유사도 비교
             for candidate in candidate_reviews:
                 if not candidate.content.strip():
                     continue
-                # [추가]
-                # 비교 대상 리뷰 본문이 비어 있으면 건너뜀
 
                 similarity_result = FastAPIClient.get_similarity(
                     source_review.content,
                     candidate.content
                 )
-                # [유지 + 사용방식 변경]
-                # FastAPIClient.get_similarity() 자체는 기존과 같지만,
-                # 이전에는 사용자가 보낸 text1, text2를 비교했다면
-                # 지금은 DB에서 조회한 리뷰 본문끼리 비교함
 
-                results.append({
-                    "review_id": candidate.id,
-                    "username": candidate.user.username,
-                    "content": candidate.content,
-                    "score": round(similarity_result["similarity"], 4),
-                    "created_at": candidate.created_at.strftime("%Y-%m-%d %H:%M"),
-                })
-                # [추가]
-                # FastAPI 결과를 프론트에서 바로 출력하기 쉽게 가공해서 저장
-                # 이전 SimilarityAPIView는 result 자체를 거의그대로 반환했지만,
-                # 여기서는 리뷰 정보 + 점수를 함께 묶어서 반환용 데이터로 만듦
+                # [현재 코드에서 분리]
+                # 이전 코드에서는 결과를 바로 append 했다면,
+                # 지금은 먼저 score 변수로 꺼내서 threshold 비교에 사용
+                score = round(similarity_result["similarity"], 4)
+
+                # [흐름 5] threshold 기준 적용
+                if score >= self.SIMILARITY_THRESHOLD:
+                    results.append({
+                        "review_id": candidate.id,
+                        "username": candidate.user.username,
+                        "content": candidate.content,
+                        "score": score,
+                        "created_at": candidate.created_at.strftime("%Y-%m-%d %H:%M"),
+                    })
 
         except RequestException as e:
+            # [유지] FastAPI 호출 실패 시 502 반환
             return Response(
                 {"detail": f"FastAPI 호출 실패: {str(e)}"},
                 status=status.HTTP_502_BAD_GATEWAY
             )
-        # [유지]
-        # FastAPI 서버 호출 실패 시 에러 응답 반환
-
+        
+        # [흐름 6] 점수 높은 순으로 정렬
         results.sort(key=lambda x: x["score"], reverse=True)
-        # [추가]
-        # 유사도 점수가 높은 순으로 정렬
 
+        # [흐름 7] 상위 3개만 최종 선택
         top_results = results[:3]
-        # [추가]
-        # 상위 3개만 추출해서 반환
 
+        # [흐름 8] 프론트에서 바로 쓸 수 있는 JSON 구조로 반환
         return Response(
             {
                 "source_review": {
@@ -158,15 +151,17 @@ class ReviewAnalyzeAPIView(APIView):
                     "username": source_review.user.username,
                     "content": source_review.content,
                 },
+
+                # [유지] threshold 적용 + 정렬 후 Top 3 결과
                 "similar_reviews": top_results,
+
+                # [현재 코드에서 추가]
+                # 프론트에서 "비교할 리뷰가 몇 개 있었는지" 안내 문구에 활용 가능
+                "candidate_count": candidate_reviews.count(),
+
+                # [현재 코드에서 추가]
+                # 프론트/디버깅 시 현재 기준값 확인용
+                "similarity_threshold": self.SIMILARITY_THRESHOLD,
             },
             status=status.HTTP_200_OK
         )
-        # [변경]
-        # 이전 SimilarityAPIView는 {"similarity": 점수} 
-        # 정도의 단순 결과를 반환했지만
-        
-        # 현재는
-        # - 기준 리뷰 정보(source_review)
-        # - 비슷한 리뷰 목록(similar_reviews)
-        # 을 함께 반환하여 화면에서 바로 출력할 수 있게 바뀜

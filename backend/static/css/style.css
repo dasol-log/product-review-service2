@@ -758,3 +758,26 @@ footer{
 .ai-similar-review-item {
     margin-bottom: 12px;
 }
+
+/* [추가] 리뷰 목록 상단 안내 문구 */
+.review-guide-box {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+}
+
+.review-guide-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1e3a8a;
+}
+
+/* [추가] AI 결과 내 보조 안내 문구 */
+.ai-sub-guide {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
