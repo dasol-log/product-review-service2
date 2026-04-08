@@ -10,66 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import os
 from datetime import timedelta
 from pathlib import Path
 
 import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# 기본 경로 설정
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# [추가] Celery + Redis 설정
-
-# [수정]
-REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
-
-# [추가] Celery broker / backend
-CELERY_BROKER_URL = REDIS_URL
-CELERY_RESULT_BACKEND = REDIS_URL
-
-# [추가] 직렬화 포맷
-CELERY_ACCEPT_CONTENT = ["json"]
-CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_SERIALIZER = "json"
-
-# [추가] 시간대
-CELERY_TIMEZONE = "Asia/Seoul"
-
-# [추가] 작업 결과 만료 시간(1시간)
-CELERY_RESULT_EXPIRES = 3600
-
-# [추가] worker가 한 번에 너무 많은 작업을 오래 붙잡지 않도록 설정
-CELERY_WORKER_PREFETCH_MULTIPLIER = 1
-
-# [추가] 작업 시작 상태 추적
-CELERY_TASK_TRACK_STARTED = True
-
-# [추가] 긴 작업 안정성용
-CELERY_TASK_TIME_LIMIT = 60 * 10
-CELERY_TASK_SOFT_TIME_LIMIT = 60 * 8
-
-# [추가] 테스트/개발 중 eager 모드 쓰고 싶으면 환경변수로 제어 가능
-CELERY_TASK_ALWAYS_EAGER = os.getenv("CELERY_TASK_ALWAYS_EAGER", "False") == "True"
-CELERY_TASK_EAGER_PROPAGATES = True
-
+# .env 읽기
 env = environ.Env()
 environ.Env.read_env(BASE_DIR / ".env")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+# 보안 / 실행 환경 [★수정]
+SECRET_KEY = env("DJANGO_SECRET_KEY", default="dev-secret-key")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-meatf7k6yfi8a(ag6=oc50ps157s)51l12#@@0pe@xn$j#2x6a"
+DEBUG = env.bool("DJANGO_DEBUG", default=True)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["127.0.0.1", "localhost"])
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -77,14 +37,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # DRF
     "rest_framework",
+    # apps
     "apps.accounts",
     "apps.products",
     "apps.reviews",
     "apps.interactions",
     "apps.ai_gateway",
     "apps.crawling",
-    "pgvector.django",  # ✅ 추가
+    # pgvector
+    "pgvector.django",
 ]
 
 MIDDLEWARE = [
@@ -116,30 +79,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "mysite.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-DB_NAME = os.getenv("DB_NAME", "product_db")
-DB_USER = os.getenv("DB_USER", "product_user")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "password")
-DB_HOST = os.getenv("DB_HOST", "db")
-DB_PORT = os.getenv("DB_PORT", "5432")
+# Database [★수정]
+DB_NAME = env("DB_NAME", default="product_db")
+DB_USER = env("DB_USER", default="product_user")
+DB_PASSWORD = env("DB_PASSWORD", default="password")
+DB_HOST = env("DB_HOST", default="db")
+DB_PORT = env("DB_PORT", default="5432")
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
+        "NAME": DB_NAME,
+        "USER": DB_USER,
+        "PASSWORD": DB_PASSWORD,
         "HOST": DB_HOST,
         "PORT": DB_PORT,
     }
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -155,41 +113,33 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/6.0/topics/i18n/
-
 LANGUAGE_CODE = "ko-kr"
-
 TIME_ZONE = "Asia/Seoul"
-
 USE_I18N = True
-
 USE_TZ = True
 
+# Static / Media
+STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
-AUTH_USER_MODEL = "accounts.User"
-
-# 이미지 업로드 파일 접근 경로
 MEDIA_URL = "/media/"
-# 실제 업로드 파일 저장 폴더
 MEDIA_ROOT = BASE_DIR / "media"
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# Custom User
+AUTH_USER_MODEL = "accounts.User"
 
+# DRF
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 3,
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
 }
 
+# Simple JWT
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
@@ -199,6 +149,41 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
-FASTAPI_BASE_URL = os.getenv("FASTAPI_BASE_URL", "http://fastapi:8001")
-
+# FastAPI 서버 주소
+# docker-compose 내부 통신 기준 기본값
 FASTAPI_BASE_URL = env("FASTAPI_BASE_URL", default="http://fastapi:8001")
+
+# Celery + Redis
+# docker-compose 내부 통신 기준 기본값
+REDIS_URL = env("REDIS_URL", default="redis://redis:6379/0")
+
+# Celery broker / backend
+CELERY_BROKER_URL = REDIS_URL
+CELERY_RESULT_BACKEND = REDIS_URL
+
+# 직렬화 포맷
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+CELERY_TIMEZONE = "Asia/Seoul"
+
+# 작업 결과 만료 시간(1시간)
+CELERY_RESULT_EXPIRES = 3600
+
+# worker가 한 번에 너무 많은 작업을 오래 붙잡지 않도록 설정
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+
+# 작업 시작 상태 추적
+CELERY_TASK_TRACK_STARTED = True
+
+# 긴 작업 안정성용
+CELERY_TASK_TIME_LIMIT = 60 * 10
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 8
+
+# [추가] 테스트/개발 중 eager 모드 쓰고 싶으면 환경변수로 제어 가능
+CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=False)
+CELERY_TASK_EAGER_PROPAGATES = True
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

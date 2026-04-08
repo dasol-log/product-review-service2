@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 from schemas.recommend_schema import (
     EmbeddingRequest,
-    EmbeddingResponse,
     SimilarityRequest,
     SimilarityResponse,
 )
@@ -10,9 +9,10 @@ from services.recommend_service import calculate_similarity, make_embeddings
 router = APIRouter(prefix="/api/v1/recommend", tags=["recommend"])
 
 
-@router.post("/embed", response_model=EmbeddingResponse)
-def embed_texts(payload: EmbeddingRequest):
-    return {"embeddings": make_embeddings(payload.texts)}
+@router.post("/embed")
+def embed_text(request: EmbeddingRequest):
+    vectors = make_embeddings(request.texts)
+    return {"embeddings": vectors}
 
 
 @router.post("/similarity", response_model=SimilarityResponse)
