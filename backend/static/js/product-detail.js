@@ -155,10 +155,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // =========================================================
-    // [추가] Celery 상태 polling 함수
+    // [유지] Celery task 상태 polling 함수
+    // WebSocket 연결 실패 시 fallback 용도로 남겨둠
     // =========================================================
     async function pollTaskStatus(taskId, reviewId, button, resultBox) {
+        const maxTry = 20;
+        let currentTry = 0;
+
         const intervalId = setInterval(async () => {
+            currentTry += 1;
+
             try {
                 const response = await api.get(`/ai/tasks/${taskId}/status/`);
                 const data = response.data;
@@ -174,28 +180,23 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
                                 <p>충분히 비슷한 후기를 찾지 못했어요.</p>
                                 <p class="ai-sub-guide">
-                                    아직 비교할 후기가 부족하거나, 현재 등록된 후기와 표현 차이가 클 수 있어요.
+                                    비교할 후기가 부족하거나, 현재 후기들과 표현 차이가 클 수 있어요.
                                 </p>
                             </div>
                         `;
                     } else {
-                        const countText = `비슷한 후기 ${result.similar_reviews.length}개를 찾았어요.`;
-
                         resultBox.innerHTML = `
                             <div class="ai-result-inner">
                                 <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
-                                <p>${countText}</p>
+                                <p>비슷한 후기 ${result.similar_reviews.length}개를 찾았어요.</p>
                                 <p class="ai-sub-guide">
                                     같은 상품에 대해 비슷하게 느낀 사용자 후기입니다.
                                 </p>
 
-                                <ul class="ai-similar-review-list" style="margin-top:10px; padding-left:18px;">
+                                <ul class="ai-similar-review-list">
                                     ${result.similar_reviews.map((item) => `
-                                        <li class="ai-similar-review-item" style="margin-bottom:14px;">
-                                            <p>
-                                                <strong>${item.label || getSimilarityLabel(item.score)}</strong>
-                                                : ${item.content}
-                                            </p>
+                                        <li class="ai-similar-review-item">
+                                            <p><strong>${item.label || getSimilarityLabel(item.score)}</strong> : ${item.content}</p>
                                             <p><small>작성자: ${item.username}</small></p>
                                             <p><small>${getSimilarityDescription(item.score)}</small></p>
                                             <p><small>유사도 ${item.score.toFixed(2)} / 작성일 ${item.created_at}</small></p>
@@ -203,10 +204,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </li>
                                     `).join("")}
                                 </ul>
-
-                                <p class="ai-sub-guide">
-                                    아직 리뷰 수가 적어 결과가 제한적일 수 있어요.
-                                </p>
                             </div>
                         `;
                     }
@@ -216,16 +213,146 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                // 진행 중 상태 표시
-                resultBox.innerHTML = `<p>분석 중... (${data.status})</p>`;
+                if (data.status === "FAILURE") {
+                    clearInterval(intervalId);
+                    resultBox.innerHTML = `
+                        <div class="ai-result-inner error">
+                            <p>${data.error_message || "AI 분석 중 오류가 발생했습니다."}</p>
+                        </div>
+                    `;
+                    button.disabled = false;
+                    button.textContent = "비슷한 후기 보기";
+                    return;
+                }
 
+                resultBox.innerHTML = `
+                    <div class="ai-result-inner">
+                        <p>AI가 후기를 분석 중입니다...</p>
+                        <p class="ai-sub-guide">현재 상태: ${data.status}</p>
+                    </div>
+                `;
+
+                if (currentTry >= maxTry) {
+                    clearInterval(intervalId);
+                    resultBox.innerHTML = `
+                        <div class="ai-result-inner error">
+                            <p>분석 시간이 길어지고 있습니다. 잠시 후 다시 확인해주세요.</p>
+                        </div>
+                    `;
+                    button.disabled = false;
+                    button.textContent = "비슷한 후기 보기";
+                }
             } catch (error) {
                 clearInterval(intervalId);
-                resultBox.innerHTML = `<p>작업 조회 실패</p>`;
+                console.error("작업 상태 조회 실패:", error.response?.data || error);
+                resultBox.innerHTML = `
+                    <div class="ai-result-inner error">
+                        <p>작업 상태를 확인하는 중 오류가 발생했습니다.</p>
+                    </div>
+                `;
                 button.disabled = false;
                 button.textContent = "비슷한 후기 보기";
             }
         }, 1500);
+    }
+
+    // =========================================================
+    // [추가] WebSocket으로 실시간 결과를 받는 함수
+    // 위치: 기존 pollTaskStatus 함수 아래 / bindAnalyzeButtons 위
+    // 목적: Celery 작업 완료 시 Redis -> FastAPI WebSocket -> 브라우저로
+    //       결과를 즉시 전달받아 화면에 표시
+    // =========================================================
+    function connectWebSocket(taskId, reviewId, button, resultBox) {
+        const socket = new WebSocket(`ws://${window.location.hostname}:8001/ws/task/${taskId}`);
+
+        socket.onopen = function () {
+            console.log("[WebSocket] Connection established for task:", taskId);
+
+            resultBox.innerHTML = `
+                <div class="ai-result-inner">
+                    <p>AI가 후기를 실시간으로 분석 중입니다...</p>
+                    <p class="ai-sub-guide">작업이 끝나면 결과가 자동으로 표시됩니다.</p>
+                </div>
+            `;
+        };
+
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            console.log("[WebSocket] Result received:", data);
+
+            // [추가] 실패 결과를 먼저 처리
+            if (data.status === "FAILURE") {
+                resultBox.innerHTML = `
+                    <div class="ai-result-inner error">
+                        <p>${data.error || "AI 분석 중 오류가 발생했습니다."}</p>
+                    </div>
+                `;
+                button.disabled = false;
+                button.textContent = "비슷한 후기 보기";
+                socket.close();
+                return;
+            }
+
+            // [추가] 성공 시 결과를 바로 화면에 표시
+            if (data.status === "SUCCESS") {
+                const result = data;
+
+                if (!result.similar_reviews || result.similar_reviews.length === 0) {
+                    resultBox.innerHTML = `
+                        <div class="ai-result-inner">
+                            <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
+                            <p>충분히 비슷한 후기를 찾지 못했어요.</p>
+                            <p class="ai-sub-guide">
+                                비교할 후기가 부족하거나, 현재 후기들과 표현 차이가 클 수 있어요.
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    resultBox.innerHTML = `
+                        <div class="ai-result-inner">
+                            <p><strong>이 리뷰와 비슷한 다른 후기</strong></p>
+                            <p>비슷한 후기 ${result.similar_reviews.length}개를 찾았어요.</p>
+                            <p class="ai-sub-guide">
+                                같은 상품에 대해 비슷하게 느낀 사용자 후기입니다.
+                            </p>
+
+                            <ul class="ai-similar-review-list">
+                                ${result.similar_reviews.map((item) => `
+                                    <li class="ai-similar-review-item">
+                                        <p><strong>${item.label || getSimilarityLabel(item.score)}</strong> : ${item.content}</p>
+                                        <p><small>작성자: ${item.username}</small></p>
+                                        <p><small>${getSimilarityDescription(item.score)}</small></p>
+                                        <p><small>유사도 ${item.score.toFixed(2)} / 작성일 ${item.created_at}</small></p>
+                                        <p><small>AI 결과 ID: ${item.analysis_id}</small></p>
+                                    </li>
+                                `).join("")}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                button.disabled = false;
+                button.textContent = "비슷한 후기 보기";
+                socket.close();
+            }
+        };
+
+        socket.onclose = function () {
+            console.log("[WebSocket] Connection closed");
+        };
+
+        socket.onerror = function (error) {
+            console.error("[WebSocket] Error:", error);
+
+            resultBox.innerHTML = `
+                <div class="ai-result-inner">
+                    <p>실시간 연결에 문제가 있어 상태 확인 방식으로 전환합니다...</p>
+                </div>
+            `;
+
+            // [추가] WebSocket 실패 시 polling 방식으로 대체
+            pollTaskStatus(taskId, reviewId, button, resultBox);
+        };
     }
 
     // =========================================================
@@ -256,8 +383,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     const taskId = response.data.task_id;
 
                     // task_id 기반 polling 시작
-                    button.textContent = "분석 진행 중...";
-                    pollTaskStatus(taskId, reviewId, button, resultBox);
+                    button.textContent = "실시간 분석 연결 중...";
+                    connectWebSocket(taskId, reviewId, button, resultBox);
 
                 } catch (error) {
                     console.error("작업 등록 실패:", error.response?.data || error);

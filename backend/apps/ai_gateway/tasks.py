@@ -1,11 +1,14 @@
 # [추가] FastAPI 호출 + 결과 저장을 Celery worker로 분리
 
+import json
+
+import redis
+from apps.reviews.models import Review
 from celery import shared_task
 from django.utils import timezone
 from requests import RequestException
 
-from apps.reviews.models import Review
-from .models import ReviewSimilarityResult, AIAnalysisTask
+from .models import AIAnalysisTask, ReviewSimilarityResult
 from .services import FastAPIClient
 
 
@@ -25,9 +28,11 @@ def get_similarity_label(score: float) -> str:
     bind=True,
     autoretry_for=(RequestException,),
     retry_backoff=True,
-    retry_kwargs={"max_retries": 3}
+    retry_kwargs={"max_retries": 3},
 )
-def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | None = None):
+def analyze_review_similarity_task(
+    self, review_id: int, requested_by_id: int | None = None
+):
     """
     [역할]
     기준 리뷰 1개를 기준으로 같은 상품의 다른 리뷰들과 유사도 분석 후
@@ -42,12 +47,18 @@ def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | 
     6. 기준 점수 이상인 결과만 ReviewSimilarityResult에 저장
     7. 상위 결과를 정렬해서 반환
     8. 작업 성공/실패 상태를 AIAnalysisTask에 저장
+
+    추가 기능:
+    - 작업 완료 후 Redis publish
+    - FastAPI WebSocket 서버가 이 신호를 받아 클라이언트에 전달
     """
 
-    # [상수]
-    # 현재 사용하는 모델명과 유사도 기준값
     MODEL_NAME = "upskyy/e5-small-korean"
     SIMILARITY_THRESHOLD = 0.45
+
+    # Redis 연결 객체 생성
+    # Docker Compose에서 서비스명이 redis 라면 host='redis' 사용
+    redis_client = redis.Redis(host="redis", port=6379, db=0, decode_responses=True)
 
     # [1] 현재 Celery task_id로 작업 상태 레코드 조회
     task_status = AIAnalysisTask.objects.get(task_id=self.request.id)
@@ -72,8 +83,7 @@ def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | 
 
         # [4] 같은 상품의 다른 리뷰들을 비교 후보로 조회
         candidate_reviews = (
-            Review.objects
-            .select_related("user")
+            Review.objects.select_related("user")
             .filter(
                 product=source_review.product,
                 is_public=True,
@@ -129,19 +139,21 @@ def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | 
                     "source_review_snapshot": source_review.content,
                     "compared_review_snapshot": candidate.content,
                     "compared_username_snapshot": candidate.user.username,
-                }
+                },
             )
 
             # [9] 프론트에 반환할 결과 형태로 리스트에 추가
-            results.append({
-                "analysis_id": saved_result.id,
-                "review_id": candidate.id,
-                "username": candidate.user.username,
-                "content": candidate.content,
-                "score": score,
-                "label": similarity_label,
-                "created_at": candidate.created_at.strftime("%Y-%m-%d %H:%M"),
-            })
+            results.append(
+                {
+                    "analysis_id": saved_result.id,
+                    "review_id": candidate.id,
+                    "username": candidate.user.username,
+                    "content": candidate.content,
+                    "score": score,
+                    "label": similarity_label,
+                    "created_at": candidate.created_at.strftime("%Y-%m-%d %H:%M"),
+                }
+            )
 
         # [10] 점수 높은 순으로 정렬
         results.sort(key=lambda x: x["score"], reverse=True)
@@ -156,7 +168,7 @@ def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | 
         task_status.save(update_fields=["status", "result_count", "finished_at"])
 
         # [13] 최종 결과 반환
-        return {
+        response_data = {
             "source_review": {
                 "review_id": source_review.id,
                 "username": source_review.user.username,
@@ -170,6 +182,14 @@ def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | 
             "status": "SUCCESS",
         }
 
+        # 분석 완료 신호를 Redis publish
+        redis_client.publish(
+            f"task_result_{self.request.id}",
+            json.dumps(response_data, ensure_ascii=False),
+        )
+
+        return response_data
+
     except Exception as e:
         # [실패 처리]
         # 작업 실패 시 상태, 에러 메시지, 종료 시각 저장
@@ -178,6 +198,16 @@ def analyze_review_similarity_task(self, review_id: int, requested_by_id: int | 
         task_status.finished_at = timezone.now()
         task_status.save(update_fields=["status", "error_message", "finished_at"])
 
-        # [예외 다시 발생]
-        # Celery가 실패로 인식하도록 예외를 다시 올림
+        error_data = {
+            "task_id": self.request.id,
+            "status": "FAILURE",
+            "error": str(e),
+        }
+
+        # 실패 신호도 Redis publish
+        redis_client.publish(
+            f"task_result_{self.request.id}",
+            json.dumps(error_data, ensure_ascii=False),
+        )
+
         raise
