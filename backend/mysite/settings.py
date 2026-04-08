@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     "apps.interactions",
     "apps.ai_gateway",
     "apps.crawling",
+    "pgvector.django",  # ✅ 추가
 ]
 
 MIDDLEWARE = [

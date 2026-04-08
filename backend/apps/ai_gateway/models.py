@@ -1,5 +1,24 @@
 from django.conf import settings
 from django.db import models
+from pgvector.django import VectorField
+
+
+class ReviewEmbedding(models.Model):
+    """
+    핵심 모델 (Vector DB 역할)
+    """
+
+    review = models.OneToOneField(
+        "reviews.Review", on_delete=models.CASCADE, related_name="embedding"
+    )
+
+    # e5-small-korean = 384 차원
+    embedding = VectorField(dimensions=384)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"ReviewEmbedding(review_id={self.review_id})"
 
 
 class ReviewSimilarityResult(models.Model):
@@ -76,7 +95,7 @@ class ReviewSimilarityResult(models.Model):
         ]
         ordering = ["-similarity_score", "-analyzed_at"]
 
-	# 관리/디버깅용 표시
+    # 관리/디버깅용 표시
     def __str__(self):
         return (
             f"[{self.model_name}] "
@@ -84,18 +103,19 @@ class ReviewSimilarityResult(models.Model):
             f"vs compared={self.compared_review_id} "
             f"score={self.similarity_score:.4f}"
         )
-    
+
 
 class AIAnalysisTask(models.Model):
     """
     [추가]
     Celery 비동기 작업 상태를 DB에서 추적하기 위한 모델
     """
+
     # [상태 값 정의]
-    STATUS_PENDING = "PENDING"     # 작업 대기중
-    STATUS_STARTED = "STARTED"     # 작업 진행중
-    STATUS_SUCCESS = "SUCCESS"     # 작업 완료
-    STATUS_FAILURE = "FAILURE"     # 작업 실패
+    STATUS_PENDING = "PENDING"  # 작업 대기중
+    STATUS_STARTED = "STARTED"  # 작업 진행중
+    STATUS_SUCCESS = "SUCCESS"  # 작업 완료
+    STATUS_FAILURE = "FAILURE"  # 작업 실패
 
     STATUS_CHOICES = [
         (STATUS_PENDING, "대기중"),
@@ -121,7 +141,6 @@ class AIAnalysisTask(models.Model):
     )
     # 어떤 사용자가 분석 요청했는지 (로그 추적용)
 
-    
     # [Celery 연결 키]
     task_id = models.CharField(
         max_length=255,
@@ -129,7 +148,7 @@ class AIAnalysisTask(models.Model):
         db_index=True,
     )
     # Celery 작업 고유 ID (이걸로 작업 상태 추적)
-    
+
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
@@ -162,4 +181,5 @@ class AIAnalysisTask(models.Model):
     # [관리자 표시용]
     def __str__(self):
         return f"{self.task_id} - {self.status}"
+
     # admin / 로그에서 "task_id - 상태" 형태로 표시

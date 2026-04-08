@@ -4,7 +4,7 @@ services:
 
   # 1️⃣ DB 먼저 (가장 먼저 준비되어야 함)
   db:
-    image: postgres:16
+    image: ankane/pgvector:v0.5.1   # ✅ 변경
     container_name: product_review_postgres2
     restart: always
     environment:
