@@ -1,6 +1,5 @@
-# [추가] FastAPI 호출 + 결과 저장을 Celery worker로 분리
-
 import json
+import logging  # ✅ [추가] 로깅 사용
 
 import redis
 from apps.reviews.models import Review
@@ -10,6 +9,9 @@ from requests import RequestException
 
 from .models import AIAnalysisTask, ReviewSimilarityResult
 from .services import FastAPIClient
+
+# ✅ [추가] logger 생성 (파일 상단에 1번만)
+logger = logging.getLogger(__name__)
 
 
 # [보조 함수]
@@ -56,6 +58,9 @@ def analyze_review_similarity_task(
     MODEL_NAME = "upskyy/e5-small-korean"
     SIMILARITY_THRESHOLD = 0.45
 
+    # ✅ [추가] task 시작 로그
+    logger.info(f"[START] Task 시작 | task_id={self.request.id} review_id={review_id}")
+
     # Redis 연결 객체 생성
     # Docker Compose에서 서비스명이 redis 라면 host='redis' 사용
     redis_client = redis.Redis(host="redis", port=6379, db=0, decode_responses=True)
@@ -76,6 +81,9 @@ def analyze_review_similarity_task(
             is_public=True,
         )
 
+        # ✅ [추가] source 리뷰 로그
+        logger.info(f"[SOURCE] 기준 리뷰 조회 완료 | review_id={source_review.id}")
+
         # [예외 처리]
         # 기준 리뷰 내용이 비어 있으면 작업 실패 처리 대상
         if not source_review.content.strip():
@@ -93,6 +101,8 @@ def analyze_review_similarity_task(
         )
 
         # [5] 비교 후보 개수 기록
+        # ✅ [추가] 후보 개수 로그
+        logger.info(f"[CANDIDATES] 후보 리뷰 개수={candidate_reviews.count()}")
         task_status.candidate_count = candidate_reviews.count()
         task_status.save(update_fields=["candidate_count"])
 
@@ -107,6 +117,9 @@ def analyze_review_similarity_task(
             if not candidate.content.strip():
                 continue
 
+            # ✅ [추가] 각 리뷰 비교 시작 로그
+            logger.debug(f"[COMPARE] 비교 시작 | candidate_id={candidate.id}")
+
             # [FastAPI 호출]
             # 기준 리뷰와 후보 리뷰의 유사도 계산
             similarity_result = FastAPIClient.get_similarity(
@@ -116,6 +129,9 @@ def analyze_review_similarity_task(
 
             # [점수 추출]
             score = round(similarity_result["similarity"], 4)
+
+            # ✅ [추가] score 로그
+            logger.debug(f"[SCORE] candidate_id={candidate.id} score={score}")
 
             # [필터링]
             # 기준 점수 미만이면 결과에서 제외
@@ -143,6 +159,10 @@ def analyze_review_similarity_task(
             )
 
             # [9] 프론트에 반환할 결과 형태로 리스트에 추가
+            # ✅ [추가] DB 저장 로그
+            logger.info(
+                f"[SAVE] 유사도 저장 | candidate_id={candidate.id} score={score}"
+            )
             results.append(
                 {
                     "analysis_id": saved_result.id,
@@ -168,6 +188,10 @@ def analyze_review_similarity_task(
         task_status.save(update_fields=["status", "result_count", "finished_at"])
 
         # [13] 최종 결과 반환
+        # ✅ [추가] 완료 로그
+        logger.info(
+            f"[SUCCESS] Task 완료 | 결과 수={len(top_results)} task_id={self.request.id}"
+        )
         response_data = {
             "source_review": {
                 "review_id": source_review.id,
@@ -183,6 +207,8 @@ def analyze_review_similarity_task(
         }
 
         # 분석 완료 신호를 Redis publish
+        # ✅ [추가] Redis publish 로그
+        logger.info(f"[REDIS] 결과 publish | channel=task_result_{self.request.id}")
         redis_client.publish(
             f"task_result_{self.request.id}",
             json.dumps(response_data, ensure_ascii=False),
@@ -193,6 +219,10 @@ def analyze_review_similarity_task(
     except Exception as e:
         # [실패 처리]
         # 작업 실패 시 상태, 에러 메시지, 종료 시각 저장
+        # ✅ [추가] 에러 로그 (stack trace 포함)
+        logger.exception(
+            f"[ERROR] Task 실패 | task_id={self.request.id} error={str(e)}"
+        )
         task_status.status = AIAnalysisTask.STATUS_FAILURE
         task_status.error_message = str(e)
         task_status.finished_at = timezone.now()

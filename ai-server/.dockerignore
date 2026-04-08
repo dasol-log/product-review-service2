@@ -1,0 +1,52 @@
+# 가상환경
+.venv
+venv
+env
+ENV
+
+# Python 캐시
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# 환경 설정
+.env
+.env.local
+
+# 데이터베이스
+*.sqlite3
+db.sqlite3
+
+# 로그
+*.log
+
+# 미디어/정적 파일
+media/
+staticfiles/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AI 모델 캐시 (필요시)
+models/
+*.pt
+*.pth
+*.onnx
