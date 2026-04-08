@@ -9,18 +9,20 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+
 import os
-import environ  
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # [추가] Celery + Redis 설정
 
-# [수정]  
-REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379/0")
+# [수정]
+REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 
 # [추가] Celery broker / backend
 CELERY_BROKER_URL = REDIS_URL
@@ -51,7 +53,7 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 8
 CELERY_TASK_ALWAYS_EAGER = os.getenv("CELERY_TASK_ALWAYS_EAGER", "False") == "True"
 CELERY_TASK_EAGER_PROPAGATES = True
 
-env = environ.Env()  
+env = environ.Env()
 environ.Env.read_env(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
@@ -117,14 +119,20 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+DB_NAME = os.getenv("DB_NAME", "product_db")
+DB_USER = os.getenv("DB_USER", "product_user")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "password")
+DB_HOST = os.getenv("DB_HOST", "db")
+DB_PORT = os.getenv("DB_PORT", "5432")
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": env("DB_NAME"),
         "USER": env("DB_USER"),
         "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST", default="localhost"),
-        "PORT": env("DB_PORT", default="5435"),
+        "HOST": DB_HOST,
+        "PORT": DB_PORT,
     }
 }
 
@@ -178,9 +186,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.AllowAny",
-    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
 }
 
 SIMPLE_JWT = {
@@ -192,4 +198,6 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
-FASTAPI_BASE_URL = "http://localhost:8001"
+FASTAPI_BASE_URL = os.getenv("FASTAPI_BASE_URL", "http://fastapi:8001")
+
+FASTAPI_BASE_URL = env("FASTAPI_BASE_URL", default="http://fastapi:8001")

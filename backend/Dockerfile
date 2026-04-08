@@ -4,13 +4,15 @@ FROM python:3.12-slim
 WORKDIR /app
 # → 컨테이너 내부 작업 폴더 설정
 
-RUN apt-get update && apt-get install -y build-essential
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 # → 필요한 시스템 패키지 설치
 
 COPY requirements.txt .
 # → 라이브러리 목록 복사
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 # → Python 패키지 설치
 
 COPY . .
