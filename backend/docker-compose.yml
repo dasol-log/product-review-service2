@@ -1,90 +1,120 @@
 version: "3.9"
 
 services:
-
-  # 1️⃣ DB 먼저 (가장 먼저 준비되어야 함)
   db:
-    image: ankane/pgvector:v0.5.1   # ✅ 변경
-    container_name: product_review_postgres2
+    image: ankane/pgvector:v0.5.1
+    container_name: product_review_postgres
     restart: always
+
+    # [개발용] 개발 환경변수 파일 사용
+    env_file:
+      - .env.dev
+
+    # [개발용] DB 컨테이너가 생성될 때 사용할 값
     environment:
-      POSTGRES_DB: product_db
-      POSTGRES_USER: product_user
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+    # [개발용] 로컬 PC에서 DB 확인하려고 5433으로 열어둠
     ports:
-      - "5435:5432"                         # 외부5435 → 내부5432
+      - "5433:5432"
+
     volumes:
-      - product_review_postgres_data:/var/lib/postgresql/data  # 데이터 저장
+      - product_review_postgres_data:/var/lib/postgresql/data
+
     networks:
       - app-network
 
-  # 2️⃣ Redis (Celery가 사용할 큐)
   redis:
     image: redis:7
     container_name: redis-server
     restart: always
+
+    # [개발용] 로컬에서 redis-cli 등으로 확인 가능
     ports:
-      - "6379:6379"                         # Redis 기본 포트
+      - "6379:6379"
+
     networks:
       - app-network
 
-  # 3️⃣ Django (웹 서버)
   web:
     build: .
     container_name: drf-web
-    command: python manage.py runserver 0.0.0.0:8000  # 서버 실행
+
+    # [개발용] Django 개발 서버 사용
+    command: python manage.py runserver 0.0.0.0:8000
+
     restart: always
+
+    # [개발용] 코드 변경 즉시 반영되도록 볼륨 마운트
     volumes:
-      - .:/app                                # 코드 동기화
+      - .:/app
+
     ports:
       - "8000:8000"
+
+    # [개발용] .env.dev 사용
     env_file:
-      - .env                                  # 환경변수 적용
+      - .env.dev
+
     depends_on:
-      - db                                    # DB 먼저 필요
-      - redis                                 # Redis 먼저 필요
+      - db
+      - redis
+      - fastapi
+
     networks:
       - app-network
 
-  # 4️⃣ FastAPI (AI 서버)
+  celery:
+    build: .
+    container_name: celery-worker
+
+    # [개발용] Celery worker 실행
+    command: celery -A mysite worker --loglevel=info --pool=solo
+
+    restart: always
+
+    # [개발용] 코드 변경 즉시 반영
+    volumes:
+      - .:/app
+
+    # [개발용] .env.dev 사용
+    env_file:
+      - .env.dev
+
+    depends_on:
+      - db
+      - redis
+      - web
+      - fastapi
+
+    networks:
+      - app-network
+
   fastapi:
     build:
       context: ../ai-server
     container_name: fastapi-server
-    command: uvicorn main:app --host 0.0.0.0 --port 8001  # AI 서버 실행
+
+    # [개발용] uvicorn 직접 실행
+    command: uvicorn main:app --host 0.0.0.0 --port 8001
+
     restart: always
+
+    # [개발용] 코드 변경 즉시 반영
     volumes:
       - ../ai-server:/app
+
     ports:
       - "8001:8001"
+
     networks:
       - app-network
 
-  # 5️⃣ Celery (가장 마지막, 모든 서비스 필요)
-  celery:
-    build: .
-    container_name: celery-worker
-    command: celery -A mysite worker --loglevel=info --pool=solo  # 작업 실행
-    restart: always
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    depends_on:
-      - db        # DB 필요
-      - redis     # 큐 필요
-      - web       # Django 필요
-      - fastapi   # AI 서버 필요
-    networks:
-      - app-network
-
-
-# 🔽 DB 데이터 영구 저장
 volumes:
   product_review_postgres_data:
 
-
-# 🔽 컨테이너끼리 통신하는 내부 네트워크
 networks:
   app-network:
     driver: bridge

@@ -1,6 +1,4 @@
-# ❌ 기존
-# from sentence_transformers import SentenceTransformer
-# embedding_model = SentenceTransformer("upskyy/e5-small-korean")
+from sentence_transformers import SentenceTransformer
 
-# ✅ 변경
-embedding_model = None
+# 전역에서 1회 로드
+embedding_model = SentenceTransformer("upskyy/e5-small-korean")
