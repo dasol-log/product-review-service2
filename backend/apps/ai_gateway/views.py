@@ -1,28 +1,24 @@
 import uuid
-# [수정]
-# 기존: from requests import RequestException
-# 변경: requests.exceptions 에서 직접 import
-from requests.exceptions import RequestException
+
+from apps.reviews.models import Review
 
 # [추가]
 # Celery 작업의 현재 상태 조회를 위해 AsyncResult import 추가
 from celery.result import AsyncResult
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.db import transaction
+from django.shortcuts import get_object_or_404
+from requests.exceptions import RequestException
 from rest_framework import status
 from rest_framework.permissions import AllowAny
-
-from django.shortcuts import get_object_or_404  
-from apps.reviews.models import Review
-
-from .serializers import EmbeddingRequestSerializer, SimilarityRequestSerializer
-from .services import FastAPIClient
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # [수정]
 # 기존: ReviewSimilarityResult 를 import 해서 View 안에서 직접 저장했음
 # 변경: 비동기 작업 상태 저장용 AIAnalysisTask import
 from .models import AIAnalysisTask
+from .serializers import EmbeddingRequestSerializer, SimilarityRequestSerializer
+from .services import FastAPIClient
 
 # [추가]
 # 실제 AI 분석은 Celery task로 이동했으므로 task import 추가
@@ -35,16 +31,14 @@ class EmbeddingAPIView(APIView):
     Django -> FastAPI 임베딩 요청
     POST /ai/embed/
     """
+
     permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = EmbeddingRequestSerializer(data=request.data)
 
         if not serializer.is_valid():
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         texts = serializer.validated_data["texts"]
 
@@ -55,7 +49,7 @@ class EmbeddingAPIView(APIView):
         except RequestException as e:
             return Response(
                 {"detail": f"FastAPI 호출 실패: {str(e)}"},
-                status=status.HTTP_502_BAD_GATEWAY
+                status=status.HTTP_502_BAD_GATEWAY,
             )
 
 
@@ -65,16 +59,14 @@ class SimilarityAPIView(APIView):
     Django -> FastAPI 유사도 요청
     POST /ai/similarity/
     """
+
     permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = SimilarityRequestSerializer(data=request.data)
 
         if not serializer.is_valid():
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         text1 = serializer.validated_data["text1"]
         text2 = serializer.validated_data["text2"]
@@ -86,8 +78,9 @@ class SimilarityAPIView(APIView):
         except RequestException as e:
             return Response(
                 {"detail": f"FastAPI 호출 실패: {str(e)}"},
-                status=status.HTTP_502_BAD_GATEWAY
+                status=status.HTTP_502_BAD_GATEWAY,
             )
+
 
 """
 [삭제]
@@ -96,6 +89,7 @@ get_similarity_label() 함수가 있었음
 변경 후에는 실제 유사도 계산과 라벨 생성이 tasks.py 로 이동했으므로
 views.py 에서는 더 이상 이 함수가 필요 없어짐
 """
+
 
 class ReviewAnalyzeAPIView(APIView):
     """
@@ -111,6 +105,7 @@ class ReviewAnalyzeAPIView(APIView):
     -> Celery 작업만 등록
     -> task_id 반환
     """
+
     permission_classes = [AllowAny]
 
     # [수정]
@@ -138,25 +133,27 @@ class ReviewAnalyzeAPIView(APIView):
         # 로그인 사용자인 경우 요청자 ID 저장
         requested_by_id = request.user.id if request.user.is_authenticated else None
 
-        # ✅ 먼저 Celery task 시작 (UUID 자동 생성됨)
-        async_result = analyze_review_similarity_task.apply_async(
-            args=[source_review.id, requested_by_id],
-        )
+        # task_id 미리 생성
+        task_id = str(uuid.uuid4())
 
-        """
-        [추가]
-        기존 코드에는 없었음
-        작업 시작 전 DB에 작업 상태를 먼저 저장
-        나중에 상태 조회 API에서 이 레코드를 사용함
-        """
+        # DB에 먼저 저장 후 트랜잭션 커밋되면 Celery 작업 전달
         AIAnalysisTask.objects.create(
             source_review=source_review,
             requested_by_id=requested_by_id,
-            task_id=async_result.id,
+            task_id=task_id,
             status=AIAnalysisTask.STATUS_PENDING,
             model_name="upskyy/e5-small-korean",
             similarity_threshold=0.45,
         )
+
+        transaction.on_commit(
+            lambda: analyze_review_similarity_task.apply_async(
+                args=[source_review.id, requested_by_id],
+                task_id=task_id,
+            )
+        )
+
+        async_result = type("obj", (object,), {"id": task_id})()
 
         """
         [수정]
@@ -188,6 +185,7 @@ class ReviewAnalyzeTaskStatusAPIView(APIView):
     - DB에 기록된 상태 확인
     - 작업 성공 시 최종 결과도 함께 반환
     """
+
     permission_classes = [AllowAny]
 
     def get(self, request, task_id):
