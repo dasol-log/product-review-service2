@@ -3,9 +3,11 @@ uvicorn[standard]
 requests
 python-dotenv
 pydantic
+redis
 numpy
 scikit-learn
-sentence-transformers
-torch
-transformers
-redis
+
+# 무거운것 배포시 제외
+# sentence-transformers
+# torch
+# transformers
