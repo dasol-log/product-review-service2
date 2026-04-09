@@ -46,7 +46,6 @@ staticfiles/
 Thumbs.db
 
 # AI 모델 캐시 (필요시)
-models/
 *.pt
 *.pth
 *.onnx
