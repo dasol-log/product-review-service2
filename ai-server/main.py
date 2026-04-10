@@ -1,8 +1,14 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from api.recommend import router as recommend_router
 from redis.asyncio import Redis
+from prometheus_fastapi_instrumentator import Instrumentator
 import json
 import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
 
 # logger 생성
 logger = logging.getLogger(__name__)
@@ -92,3 +98,9 @@ async def websocket_endpoint(websocket: WebSocket, task_id: str):
             await websocket.close()
         except Exception:
             pass
+
+
+# Prometheus 메트릭 설정
+Instrumentator(
+    excluded_handlers=["/metrics", "/docs", "/openapi.json"]
+).instrument(app).expose(app, endpoint="/metrics")

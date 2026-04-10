@@ -112,6 +112,33 @@ services:
     networks:
       - app-network
 
+  # Prometheus 모니터링
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus-server
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - web
+      - fastapi
+    networks:
+      - app-network
+
+  # Grafana 시각화
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana-server
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - app-network
+
 volumes:
   product_review_postgres_data:
 
