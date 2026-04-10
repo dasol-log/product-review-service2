@@ -1,6 +1,7 @@
 # [역할] Celery 비동기 작업 등록용
 import json
 import logging
+import time
 
 # [역할] 결과를 Redis Pub/Sub으로 WebSocket에 전달
 import redis
@@ -16,6 +17,11 @@ from django.utils import timezone
 # DB 안에서 embedding 간 코사인 거리 계산할 때 사용
 from pgvector.django import CosineDistance
 
+# ==============================
+# [추가] Prometheus 메트릭 import
+# ==============================
+from prometheus_client import Counter, Histogram
+
 # [역할] FastAPI 요청 실패 시 재시도 처리용
 from requests import RequestException
 
@@ -30,6 +36,53 @@ from .services import FastAPIClient
 
 # logger 생성 (파일 상단에 1번만)
 logger = logging.getLogger(__name__)
+
+
+# =========================================================
+# [추가] Prometheus 메트릭 정의
+# =========================================================
+
+# 후보 리뷰 조회 시간
+AI_CANDIDATE_QUERY_DURATION = Histogram(
+    "ai_candidate_query_duration_seconds",
+    "Candidate review query duration inside celery task",
+)
+
+# FastAPI 임베딩/호출 시간
+AI_FASTAPI_DURATION = Histogram(
+    "ai_fastapi_duration_seconds",
+    "FastAPI call duration inside celery task",
+)
+
+# DB 저장 시간
+AI_DB_SAVE_DURATION = Histogram(
+    "ai_db_save_duration_seconds",
+    "DB save duration inside celery task",
+)
+
+# Celery task 전체 처리 시간
+AI_TASK_TOTAL_DURATION = Histogram(
+    "ai_task_total_duration_seconds",
+    "Total AI processing duration inside celery task",
+)
+
+# FastAPI 에러 수
+AI_FASTAPI_ERROR_COUNT = Counter(
+    "ai_fastapi_error_total",
+    "Total FastAPI call errors inside celery task",
+)
+
+# DB 저장 에러 수
+AI_DB_SAVE_ERROR_COUNT = Counter(
+    "ai_db_save_error_total",
+    "Total DB save errors inside celery task",
+)
+
+# 실제 저장 성공 수
+AI_SIMILARITY_SAVED_COUNT = Counter(
+    "ai_similarity_saved_total",
+    "Total similarity results saved inside celery task",
+)
 
 
 # [보조 함수]
@@ -66,6 +119,11 @@ def analyze_review_similarity_task(
     MODEL_NAME = "upskyy/e5-small-korean"
     SIMILARITY_THRESHOLD = 0.45
 
+    # ==============================
+    # [추가] 전체 task 시간 측정 시작
+    # ==============================
+    task_start = time.time()
+
     # task 시작 로그
     logger.info(f"[START] Task 시작 | task_id={self.request.id} review_id={review_id}")
 
@@ -96,22 +154,40 @@ def analyze_review_similarity_task(
             raise ValueError("분석할 리뷰 내용이 없습니다.")
 
         # 2) 기준 리뷰 임베딩 생성 후 DB 저장
-        # [핵심]
-        # FastAPI에 텍스트를 보내서 384차원 벡터를 받아옴
-        source_embedding = FastAPIClient.get_embedding(source_review.content)
+        # =========================================================
+        # [추가] FastAPI 호출 시간 측정 - 기준 리뷰 임베딩 생성
+        # =========================================================
+        fastapi_start = time.time()
+        try:
+            source_embedding = FastAPIClient.get_embedding(source_review.content)
+            AI_FASTAPI_DURATION.observe(time.time() - fastapi_start)
+        except Exception:
+            AI_FASTAPI_ERROR_COUNT.inc()
+            raise
 
-        # [핵심]
-        # ReviewEmbedding 테이블에 기준 리뷰 벡터 저장
-        # 이미 있으면 update, 없으면 create
-        ReviewEmbedding.objects.update_or_create(
-            review=source_review,
-            defaults={"embedding": source_embedding},
-        )
+        # =========================================================
+        # [추가] DB 저장 시간 측정 - 기준 리뷰 임베딩 저장
+        # =========================================================
+        db_start = time.time()
+        try:
+            ReviewEmbedding.objects.update_or_create(
+                review=source_review,
+                defaults={"embedding": source_embedding},
+            )
+            AI_DB_SAVE_DURATION.observe(time.time() - db_start)
+        except Exception:
+            AI_DB_SAVE_ERROR_COUNT.inc()
+            raise
+
         logger.info(
             f"[EMBED] 기준 리뷰 임베딩 저장 완료 | review_id={source_review.id}"
         )
 
         # 3) 같은 상품의 다른 리뷰들 조회
+        # =========================================================
+        # [추가] 후보 리뷰 조회 시간 측정
+        # =========================================================
+        query_start = time.time()
         candidate_reviews = (
             Review.objects.select_related("user")
             .filter(
@@ -121,6 +197,7 @@ def analyze_review_similarity_task(
             .exclude(id=source_review.id)
             .order_by("-created_at")[:20]
         )
+        AI_CANDIDATE_QUERY_DURATION.observe(time.time() - query_start)
 
         candidate_count = candidate_reviews.count()
 
@@ -146,13 +223,26 @@ def analyze_review_similarity_task(
                 continue
 
             # [역할] FastAPI에서 후보 리뷰 임베딩 생성
-            candidate_embedding = FastAPIClient.get_embedding(candidate.content)
+            fastapi_start = time.time()
+            try:
+                candidate_embedding = FastAPIClient.get_embedding(candidate.content)
+                AI_FASTAPI_DURATION.observe(time.time() - fastapi_start)
+            except Exception:
+                AI_FASTAPI_ERROR_COUNT.inc()
+                raise
 
             # [역할] 후보 리뷰 벡터를 DB에 저장
-            ReviewEmbedding.objects.create(
-                review=candidate,
-                embedding=candidate_embedding,
-            )
+            db_start = time.time()
+            try:
+                ReviewEmbedding.objects.create(
+                    review=candidate,
+                    embedding=candidate_embedding,
+                )
+                AI_DB_SAVE_DURATION.observe(time.time() - db_start)
+            except Exception:
+                AI_DB_SAVE_ERROR_COUNT.inc()
+                raise
+
             logger.info(f"[EMBED] 후보 리뷰 임베딩 생성 | candidate_id={candidate.id}")
 
         # 5) pgvector로 유사 리뷰 검색
@@ -189,22 +279,28 @@ def analyze_review_similarity_task(
             similarity_label = get_similarity_label(score)
 
             # 유사도 결과 저장
-            # 이미 있으면 갱신, 없으면 생성
-            saved_result, _ = ReviewSimilarityResult.objects.update_or_create(
-                source_review=source_review,
-                compared_review=compared_review,
-                model_name=MODEL_NAME,
-                defaults={
-                    "product": source_review.product,
-                    "requested_by_id": requested_by_id,
-                    "similarity_score": score,
-                    "similarity_label": similarity_label,
-                    "similarity_threshold": SIMILARITY_THRESHOLD,
-                    "source_review_snapshot": source_review.content,
-                    "compared_review_snapshot": compared_review.content,
-                    "compared_username_snapshot": compared_review.user.username,
-                },
-            )
+            db_start = time.time()
+            try:
+                saved_result, _ = ReviewSimilarityResult.objects.update_or_create(
+                    source_review=source_review,
+                    compared_review=compared_review,
+                    model_name=MODEL_NAME,
+                    defaults={
+                        "product": source_review.product,
+                        "requested_by_id": requested_by_id,
+                        "similarity_score": score,
+                        "similarity_label": similarity_label,
+                        "similarity_threshold": SIMILARITY_THRESHOLD,
+                        "source_review_snapshot": source_review.content,
+                        "compared_review_snapshot": compared_review.content,
+                        "compared_username_snapshot": compared_review.user.username,
+                    },
+                )
+                AI_DB_SAVE_DURATION.observe(time.time() - db_start)
+                AI_SIMILARITY_SAVED_COUNT.inc()
+            except Exception:
+                AI_DB_SAVE_ERROR_COUNT.inc()
+                raise
 
             logger.info(
                 f"[SAVE] 유사도 저장 | compared_review_id={compared_review.id} score={score}"
@@ -261,6 +357,11 @@ def analyze_review_similarity_task(
             f"task_result_{self.request.id}",
             json.dumps(response_data, ensure_ascii=False),
         )
+
+        # ==============================
+        # [추가] 전체 task 처리 시간 기록
+        # ==============================
+        AI_TASK_TOTAL_DURATION.observe(time.time() - task_start)
 
         return response_data
 

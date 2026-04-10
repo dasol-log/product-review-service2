@@ -1,3 +1,4 @@
+import time
 import uuid
 
 from apps.reviews.models import Review
@@ -7,6 +8,11 @@ from apps.reviews.models import Review
 from celery.result import AsyncResult
 from django.db import transaction
 from django.shortcuts import get_object_or_404
+
+# ==============================
+# [추가] Prometheus 메트릭 import
+# ==============================
+from prometheus_client import Counter, Histogram
 from requests.exceptions import RequestException
 from rest_framework import status
 from rest_framework.permissions import AllowAny
@@ -23,6 +29,24 @@ from .services import FastAPIClient
 # [추가]
 # 실제 AI 분석은 Celery task로 이동했으므로 task import 추가
 from .tasks import analyze_review_similarity_task
+
+# =========================================================
+# [추가] 작업 등록 API 요청 수
+# - 사용자가 AI 분석 버튼을 몇 번 눌렀는지
+# =========================================================
+AI_ANALYZE_REQUEST_COUNT = Counter(
+    "ai_analyze_request_total",
+    "Total AI analyze requests",
+)
+
+# =========================================================
+# [추가] 작업 등록 API 전체 시간
+# - /ai/reviews/<review_id>/analyze/ POST 처리 시간
+# =========================================================
+AI_ANALYZE_DURATION = Histogram(
+    "ai_analyze_duration_seconds",
+    "AI analyze request registration duration",
+)
 
 
 class EmbeddingAPIView(APIView):
@@ -113,6 +137,16 @@ class ReviewAnalyzeAPIView(APIView):
     # 변경 후에는 실제 분석 로직이 tasks.py 로 이동했으므로 여기서는 제거됨
 
     def post(self, request, review_id):
+        # ==============================
+        # [추가] 요청 수 증가
+        # ==============================
+        AI_ANALYZE_REQUEST_COUNT.inc()
+
+        # ==============================
+        # [추가] 전체 처리 시간 측정 시작
+        # ==============================
+        start_total = time.time()
+
         # [유지]
         # 기준 리뷰 존재 여부 먼저 확인
         source_review = get_object_or_404(
@@ -154,6 +188,11 @@ class ReviewAnalyzeAPIView(APIView):
         )
 
         async_result = type("obj", (object,), {"id": task_id})()
+
+        # ==============================
+        # [추가] 작업 등록 요청 처리 시간 기록
+        # ==============================
+        AI_ANALYZE_DURATION.observe(time.time() - start_total)
 
         """
         [수정]
