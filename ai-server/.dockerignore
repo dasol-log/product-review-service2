@@ -49,3 +49,8 @@ Thumbs.db
 *.pt
 *.pth
 *.onnx
+
+.pytest_cache
+.mypy_cache
+.ipynb_checkpoints
+.cache

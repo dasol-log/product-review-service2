@@ -8,7 +8,7 @@ redis
 numpy
 scikit-learn
 
-# 무거운것 배포시 제외했던 라이브러리를 다시 복구 합니다.
-sentence-transformers
-torch
-transformers
+# 무거운 라이브러리 주석처리
+# sentence-transformers
+# torch
+# transformers

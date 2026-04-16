@@ -121,9 +121,22 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
     depends_on:
       - web
       - fastapi
+    networks:
+      - app-network
+
+  # Alertmanager 알림
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager-server
+    restart: always
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./prometheus/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     networks:
       - app-network
 
@@ -136,11 +149,14 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
     networks:
       - app-network
 
 volumes:
   product_review_postgres_data:
+  grafana_data:
 
 networks:
   app-network:

@@ -1,0 +1,161 @@
+# =========================================
+# Celery 구성 전체 개념
+# -----------------------------------------
+# 이 파일은 Celery 워커를 Kubernetes에서 실행하기 위해
+# Deployment 리소스를 정의합니다.
+#
+# 1. Deployment
+#    - Celery Pod를 생성한다
+#    - Celery 워커 프로세스를 실행한다
+#    - Pod가 죽으면 다시 만든다
+#    - Django 설정값 / DB / Redis 등을 함께 사용한다
+#
+# 특징:
+# - Django와 같은 이미지(review-django:local)를 사용한다
+# - 웹 서버가 아니라 "백그라운드 작업 처리용 서버"이다
+#
+# 즉, 이 파일은
+# "Celery 작업 처리 서버를 실행하고 / 유지하고 / 큐를 계속 처리하게 만드는"
+# 역할을 한다.
+# =========================================
+
+# =========================================
+# [1] Celery Deployment
+# -----------------------------------------
+# 역할:
+# - review-django:local 이미지를 사용해 Celery Pod를 생성한다
+# - celery worker 명령으로 작업 처리 프로세스를 실행한다
+# - Pod가 죽으면 다시 생성한다
+# - Django 설정 / DB / Redis / FastAPI 설정을 함께 사용한다
+#
+# [프로젝트 설정과 반드시 맞아야 하는 부분]
+# - REDIS_URL        → redis://redis-service:6379/0
+# - DB_HOST          → postgres-service
+# - FASTAPI_BASE_URL → http://fastapi-service:8001
+# - Django 설정값 (SECRET_KEY 등)도 동일하게 맞아야 함
+# =========================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery
+  namespace: review-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery
+  template:
+    metadata:
+      labels:
+        app: celery
+    spec:
+      containers:
+        - name: celery
+          image: review-django:local
+          imagePullPolicy: IfNotPresent
+
+          # Celery 워커 실행 명령
+          command: ["celery"]
+          args:
+            - -A
+            - mysite
+            - worker
+            - --loglevel=info
+            - --pool=solo
+
+          # -----------------------------
+          # 환경변수 설정
+          # -----------------------------
+          # Django와 동일한 설정을 공유한다
+          env:
+            # Django 기본 설정
+            - name: DJANGO_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DJANGO_DEBUG
+
+            - name: DJANGO_ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DJANGO_ALLOWED_HOSTS
+
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: review-secret
+                  key: DJANGO_SECRET_KEY
+
+            # -----------------------------
+            # DB 설정
+            # -----------------------------
+            # PostgreSQL 접근 정보
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DB_NAME
+
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DB_HOST
+
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DB_PORT
+
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DB_USER
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: review-secret
+                  key: DB_PASSWORD
+
+            # -----------------------------
+            # Redis 설정 (Celery 핵심)
+            # -----------------------------
+            # Celery가 작업 큐를 가져오는 주소
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: REDIS_URL
+
+            # -----------------------------
+            # FastAPI 설정
+            # -----------------------------
+            # 작업 처리 중 FastAPI 호출 가능
+            - name: FASTAPI_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: FASTAPI_BASE_URL
+
+            # HTTPS 리다이렉트 설정 (실습용)
+            - name: SECURE_SSL_REDIRECT
+              value: "False"
+
+            # 타임존
+            - name: TZ
+              value: Asia/Seoul
+
+          # -----------------------------
+          # 리소스 설정
+          # -----------------------------
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"

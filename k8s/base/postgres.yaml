@@ -1,0 +1,183 @@
+# =========================================
+# PostgreSQL 구성 전체 개념
+# -----------------------------------------
+# 이 파일은 PostgreSQL을 쿠버네티스에서 실행하기 위해
+# 아래 3가지 역할로 나누어 작성한 파일입니다.
+#
+# 1. StatefulSet → DB Pod 실행 및 유지
+# 2. Service     → DB 접속 주소 제공
+# 3. PVC         → DB 데이터 저장
+#
+# 즉,
+# "DB를 실행하고 / 접속 가능하게 하고 / 데이터는 유지되게 한다"
+# 를 한 파일에 정의한 것입니다.
+# =========================================
+
+# =========================================
+# [1] PostgreSQL Headless Service
+# -----------------------------------------
+# 역할:
+# - StatefulSet의 안정적인 네트워크 식별용
+# - DB Pod 자체를 위한 서비스
+# =========================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: review-k8s
+  labels:
+    app: postgres
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+
+---
+# =========================================
+# [2] PostgreSQL 일반 Service
+# -----------------------------------------
+# 역할:
+# - Django / FastAPI / Celery 가 실제로 접근할 DB 주소 제공
+# - DB_HOST=postgres-service 와 연결되는 실제 Service 이름
+# =========================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: review-k8s
+  labels:
+    app: postgres
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+
+---
+# =========================================
+# [3] PostgreSQL StatefulSet
+# -----------------------------------------
+# 역할:
+# - PostgreSQL 컨테이너를 실행
+# - DB Pod를 유지/복구
+# - 상태 저장형 DB이므로 StatefulSet 사용
+# =========================================
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: review-k8s
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      terminationGracePeriodSeconds: 30
+
+      containers:
+        - name: postgres
+          image: ankane/pgvector:v0.5.1
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - name: postgres
+              containerPort: 5432
+
+          env:
+            # DB 이름
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DB_NAME
+
+            # DB 사용자명
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: review-config
+                  key: DB_USER
+
+            # DB 비밀번호
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: review-secret
+                  key: DB_PASSWORD
+
+            # PostgreSQL 데이터 저장 경로
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+
+            # 시간대
+            - name: TZ
+              value: Asia/Seoul
+            - name: PGTZ
+              value: Asia/Seoul
+
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+          # DB가 요청 받을 준비가 되었는지 확인
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 6
+
+          # DB 프로세스가 살아있는지 확인
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+
+  # =========================================
+  # [4] PVC 자동 생성
+  # -----------------------------------------
+  # 역할:
+  # - DB 데이터를 디스크에 저장
+  # - Pod가 재생성되어도 데이터 유지
+  # =========================================
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: review-config
+  namespace: review-k8s
+data:
+  DJANGO_DEBUG: "True"
+  SECURE_SSL_REDIRECT: "False"
+  DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost,django-service,review.local"
+
+  DB_NAME: "product_db"
+  DB_USER: "product_user"
+  DB_HOST: "postgres-service"
+  DB_PORT: "5432"
+
+  FASTAPI_BASE_URL: "http://fastapi-service:8001"
+  REDIS_URL: "redis://redis-service:6379/0"
+
+  CSRF_TRUSTED_ORIGINS: "http://review.local"

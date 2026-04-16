@@ -1,0 +1,22 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: "discord-default"
+  group_by: ["alertname"]
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 1h
+
+receivers:
+  - name: "discord-default"
+    discord_configs:
+      - webhook_url: "https://discordapp.com/api/webhooks/1492800667352563804/TAYPkpKOW19JEEV49rxzWgDtCjt6YY7hDnu6AkmnyVJw3R74hM4Jfl32YSVfiNkrhDpy"
+        send_resolved: true
+        title: "[{{ .Status | toUpper }}] {{ .CommonLabels.alertname }}"
+        message: |
+          **Alert:** {{ .CommonLabels.alertname }}
+          **Status:** {{ .Status }}
+          **Severity:** {{ .CommonLabels.severity }}
+          **Summary:** {{ .CommonAnnotations.summary }}
+          **Description:** {{ .CommonAnnotations.description }}

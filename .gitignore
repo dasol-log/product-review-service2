@@ -33,3 +33,9 @@ Thumbs.db
 
 # Logs
 *.log*.deb
+
+# Kubernetes
+k8s/base/secret.yaml
+
+backend/minikube-linux-amd64
+backend/kubectl

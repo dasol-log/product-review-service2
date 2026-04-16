@@ -1,0 +1,99 @@
+groups:
+  - name: django-performance-alerts
+    rules:
+      - alert: DjangoHighP95Warning
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(ai_analyze_duration_seconds_bucket[1m])) by (le)
+          ) > 0.20
+        for: 2m
+        labels:
+          severity: warning
+          service: django
+        annotations:
+          summary: "Django p95 latency warning"
+          description: "Django p95가 0.20초를 초과했습니다. 50명 이상 부하에서 관찰된 병목 조짐과 유사합니다."
+
+      - alert: DjangoHighP95Critical
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(ai_analyze_duration_seconds_bucket[1m])) by (le)
+          ) > 0.30
+        for: 3m
+        labels:
+          severity: critical
+          service: django
+        annotations:
+          summary: "Django p95 latency critical"
+          description: "Django p95가 0.30초를 초과한 상태가 지속되고 있습니다. 병목 진입 가능성이 높습니다."
+
+      - alert: DjangoMeanLatencyHigh
+        expr: |
+          (
+            rate(ai_analyze_duration_seconds_sum[1m])
+            /
+            clamp_min(rate(ai_analyze_duration_seconds_count[1m]), 1e-9)
+          ) > 0.07
+        for: 3m
+        labels:
+          severity: warning
+          service: django
+        annotations:
+          summary: "Django mean latency high"
+          description: "Django 평균 응답 시간이 상승했습니다. p95와 함께 병목 여부를 확인하세요."
+
+      - alert: DjangoHigh4xxRate
+        expr: |
+          (
+            sum(rate(django_http_responses_total_by_status_view_method_total{status=~"4.."}[5m]))
+            /
+            clamp_min(sum(rate(django_http_responses_total_by_status_view_method_total[5m])), 1e-9)
+          ) > 0.10
+        for: 5m
+        labels:
+          severity: warning
+          service: django
+        annotations:
+          summary: "Django 4xx error rate high"
+          description: "Django 4xx 에러율이 10%를 초과했습니다."
+
+      - alert: DjangoNoTraffic
+        expr: |
+          sum(rate(ai_analyze_request_total[1m])) < 0.01
+        for: 2m
+        labels:
+          severity: critical
+          service: django
+        annotations:
+          summary: "Django no traffic"
+          description: "AI 분석 요청 수가 거의 없습니다."
+
+  - name: fastapi-alerts
+    rules:
+      - alert: FastAPIHigh5xxRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(http_requests_total[5m])), 1e-9)
+          ) > 0.05
+        for: 1m
+        labels:
+          severity: critical
+          service: fastapi
+        annotations:
+          summary: "FastAPI 5xx error rate high"
+          description: "FastAPI 5xx 에러율이 5%를 초과했습니다."
+
+      - alert: FastAPINoTraffic
+        expr: |
+          sum(rate(http_requests_total{handler="/api/v1/recommend/similarity"}[5m])) < 0.01
+        for: 3m
+        labels:
+          severity: warning
+          service: fastapi
+        annotations:
+          summary: "FastAPI no traffic"
+          description: "FastAPI 요청이 거의 없습니다. Celery 큐 또는 호출 경로를 확인하세요."
